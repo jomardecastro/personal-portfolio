@@ -1,12 +1,93 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import TerminalIntro from '../components/TerminalIntro';
+import MatrixBackground from '../components/MatrixBackground';
+import EditorTabs from '../components/EditorTabs';
+import HeroSection from '../components/HeroSection';
+import StatsSection from '../components/StatsSection';
+import TechStackSection from '../components/TechStackSection';
+import ContactSection from '../components/ContactSection';
+import AIToolsSection from '../components/sections/AIToolsSection';
+import AutomationSection from '../components/sections/AutomationSection';
+import WebAppsSection from '../components/sections/WebAppsSection';
 
 const Index = () => {
+  const [showIntro, setShowIntro] = useState(true);
+  const [activeTab, setActiveTab] = useState('home');
+
+  // Check if intro was shown before (session only)
+  useEffect(() => {
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    if (hasSeenIntro) {
+      setShowIntro(false);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('hasSeenIntro', 'true');
+    setShowIntro(false);
+  };
+
+  const handleExplore = () => {
+    setActiveTab('ai-tools');
+    document.getElementById('ai-tools')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home':
+        return (
+          <>
+            <HeroSection onExplore={handleExplore} />
+            <StatsSection />
+            <TechStackSection />
+          </>
+        );
+      case 'ai-tools':
+        return <AIToolsSection />;
+      case 'automation':
+        return <AutomationSection />;
+      case 'web-apps':
+        return <WebAppsSection />;
+      case 'contact':
+        return <ContactSection />;
+      default:
+        return <HeroSection onExplore={handleExplore} />;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground relative">
+      <AnimatePresence>
+        {showIntro && <TerminalIntro onComplete={handleIntroComplete} />}
+      </AnimatePresence>
+
+      {!showIntro && (
+        <>
+          <MatrixBackground />
+          <div className="relative z-10">
+            <EditorTabs activeTab={activeTab} onTabChange={setActiveTab} />
+            <main id={activeTab}>
+              {renderContent()}
+            </main>
+            
+            {/* Footer */}
+            <footer className="py-8 px-4 border-t border-border">
+              <div className="container mx-auto text-center">
+                <p className="text-sm text-muted-foreground font-mono">
+                  <span className="text-primary">{'</'}</span>
+                  Jose Marie De Castro
+                  <span className="text-primary">{'>'}</span>
+                  {' '}· Built with passion & lots of ☕
+                </p>
+                <p className="text-xs text-muted-foreground/50 mt-2 font-mono">
+                  © {new Date().getFullYear()} · All rights reserved
+                </p>
+              </div>
+            </footer>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    container_name: dev-playground-live
+    ports:
+      - "3000:80"
+    restart: unless-stopped

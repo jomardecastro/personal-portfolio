@@ -56,6 +56,7 @@ const TechStackSection = () => {
               viewport={{ once: true }}
               transition={{ delay: categoryIndex * 0.1 }}
               className="glass rounded-xl p-6"
+              style={{ zIndex: techs.some(t => t.name === hoveredTech) ? 50 : 'auto' }}
             >
               <h3 className="font-mono text-sm text-muted-foreground mb-4 uppercase tracking-wider">
                 {category}
@@ -86,7 +87,7 @@ const TechStackSection = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="absolute left-full top-0 ml-2 z-10 glass rounded-lg p-3 min-w-48"
                       >
-                        <div className="text-xs font-mono text-muted-foreground mb-2">
+                        <div className="text-xs font-mono  text-muted-foreground mb-2">
                           Used in:
                         </div>
                         <div className="flex flex-wrap gap-1">

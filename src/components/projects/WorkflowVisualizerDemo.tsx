@@ -73,52 +73,17 @@ const WorkflowVisualizerDemo = () => {
 
       <div className="p-6">
         {/* Workflow Diagram */}
-        <div className="relative h-40 mb-4 overflow-x-auto">
-          <svg className="absolute inset-0 w-full h-full" style={{ minWidth: '650px' }}>
-            {/* Connection lines */}
-            {connections.map((conn, i) => {
-              const from = nodes.find(n => n.id === conn.from)!;
-              const to = nodes.find(n => n.id === conn.to)!;
-              return (
-                <g key={`${conn.from}-${conn.to}`}>
-                  <line
-                    x1={from.x + 40}
-                    y1={from.y}
-                    x2={to.x}
-                    y2={to.y}
-                    stroke={activeConnection === i ? 'hsl(var(--accent))' : 'hsl(var(--border))'}
-                    strokeWidth={activeConnection === i ? 3 : 2}
-                    strokeDasharray={activeConnection === i ? '8,4' : 'none'}
-                    className="transition-all duration-300"
-                  />
-                  {activeConnection === i && (
-                    <motion.circle
-                      cx={from.x + 40}
-                      cy={from.y}
-                      r={6}
-                      fill="hsl(var(--accent))"
-                      animate={{ cx: to.x, cy: to.y }}
-                      transition={{ duration: 0.8 }}
-                    />
-                  )}
-                </g>
-              );
-            })}
-          </svg>
-
-          {/* Nodes */}
-          <div className="relative" style={{ minWidth: '650px' }}>
-            {nodes.map((node) => {
-              const Icon = node.icon;
-              const isActive = connections[activeConnection]?.from === node.id || 
-                               connections[activeConnection]?.to === node.id;
-              return (
+        <div className="flex items-center justify-center gap-4 mb-4 py-6 overflow-x-auto">
+          {nodes.map((node, index) => {
+            const Icon = node.icon;
+            const isActive = connections[activeConnection]?.from === node.id ||
+                             connections[activeConnection]?.to === node.id;
+            return (
+              <div key={node.id} className="flex items-center gap-4">
                 <motion.div
-                  key={node.id}
-                  className={`absolute flex flex-col items-center cursor-pointer transition-all ${
+                  className={`flex flex-col items-center cursor-pointer transition-all ${
                     isActive ? 'scale-110' : ''
                   }`}
-                  style={{ left: node.x, top: node.y - 30 }}
                   onClick={() => setSelectedNode(selectedNode === node.id ? null : node.id)}
                   whileHover={{ scale: 1.05 }}
                 >
@@ -127,13 +92,32 @@ const WorkflowVisualizerDemo = () => {
                   } ${isActive ? 'glow-accent' : ''}`}>
                     <Icon className={`w-5 h-5 text-${node.color}`} />
                   </div>
-                  <span className="text-xs font-mono mt-2 text-muted-foreground">
+                  <span className="text-xs font-mono mt-2 text-muted-foreground whitespace-nowrap">
                     {node.label}
                   </span>
                 </motion.div>
-              );
-            })}
-          </div>
+                {index < connections.length && (
+                  <div className="relative flex items-center">
+                    <div className={`w-12 h-0.5 transition-all duration-300 ${
+                      activeConnection === index ? 'bg-accent' : 'bg-border'
+                    }`} />
+                    <ArrowRight className={`w-4 h-4 -ml-1 transition-all duration-300 ${
+                      activeConnection === index ? 'text-accent' : 'text-border'
+                    }`} />
+                    {activeConnection === index && (
+                      <motion.div
+                        className="absolute w-3 h-3 rounded-full bg-accent"
+                        style={{ top: '50%', translateY: '-50%' }}
+                        initial={{ left: 0 }}
+                        animate={{ left: '100%' }}
+                        transition={{ duration: 0.8 }}
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Node Info */}

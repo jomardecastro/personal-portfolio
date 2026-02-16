@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import MLMDashboardDemo from '../projects/MLMDashboardDemo';
 import POSSystemDemo from '../projects/POSSystemDemo';
 
-const WebAppsSection = () => {
+const POSSystemSection = () => {
   return (
     <section className="py-20 px-4">
       <div className="container mx-auto">
@@ -14,15 +13,14 @@ const WebAppsSection = () => {
         >
           <h2 className="text-2xl md:text-3xl font-mono font-bold mb-4">
             <span className="text-muted-foreground">{'// '}</span>
-            <span className="text-gradient-primary">Web Applications</span>
+            <span className="text-gradient-primary">POS System</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Full-stack applications serving thousands of users daily.
+            Point of sale system with integrated payment processing.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          <MLMDashboardDemo />
+        <div className="max-w-2xl mx-auto">
           <POSSystemDemo />
         </div>
       </div>
@@ -30,4 +28,4 @@ const WebAppsSection = () => {
   );
 };
 
-export default WebAppsSection;
+export default POSSystemSection;

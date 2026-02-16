@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, FileCode, Terminal, Cpu, Globe, Mail } from 'lucide-react';
+import { X, FileCode, Terminal, Cpu, Globe, Mail, ShoppingCart } from 'lucide-react';
 
 interface Tab {
   id: string;
@@ -12,7 +12,8 @@ const allTabs: Tab[] = [
   { id: 'home', label: 'Home.tsx', icon: <FileCode className="w-4 h-4" /> },
   { id: 'ai-tools', label: 'AITools.tsx', icon: <Cpu className="w-4 h-4" /> },
   { id: 'automation', label: 'Automation.tsx', icon: <Terminal className="w-4 h-4" /> },
-  { id: 'web-apps', label: 'WebApps.tsx', icon: <Globe className="w-4 h-4" /> },
+  { id: 'mlm-systems', label: 'MLMSystems.tsx', icon: <Globe className="w-4 h-4" /> },
+  { id: 'pos-system', label: 'POSSystem.tsx', icon: <ShoppingCart className="w-4 h-4" /> },
   { id: 'contact', label: 'Contact.tsx', icon: <Mail className="w-4 h-4" /> },
 ];
 
@@ -22,7 +23,7 @@ interface EditorTabsProps {
 }
 
 const EditorTabs = ({ activeTab, onTabChange }: EditorTabsProps) => {
-  const [openTabs, setOpenTabs] = useState<string[]>(['home', 'ai-tools', 'automation', 'web-apps', 'contact']);
+  const [openTabs, setOpenTabs] = useState<string[]>(['home', 'ai-tools', 'automation', 'mlm-systems', 'pos-system', 'contact']);
 
   const handleCloseTab = (e: React.MouseEvent, tabId: string) => {
     e.stopPropagation();

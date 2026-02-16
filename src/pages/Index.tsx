@@ -9,7 +9,8 @@ import TechStackSection from '../components/TechStackSection';
 import ContactSection from '../components/ContactSection';
 import AIToolsSection from '../components/sections/AIToolsSection';
 import AutomationSection from '../components/sections/AutomationSection';
-import WebAppsSection from '../components/sections/WebAppsSection';
+import MLMSystemsSection from '../components/sections/MLMSystemsSection';
+import POSSystemSection from '../components/sections/POSSystemSection';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -47,8 +48,10 @@ const Index = () => {
         return <AIToolsSection />;
       case 'automation':
         return <AutomationSection />;
-      case 'web-apps':
-        return <WebAppsSection />;
+      case 'mlm-systems':
+        return <MLMSystemsSection />;
+      case 'pos-system':
+        return <POSSystemSection />;
       case 'contact':
         return <ContactSection />;
       default:

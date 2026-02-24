@@ -10,10 +10,10 @@ interface Tab {
 
 const allTabs: Tab[] = [
   { id: 'home', label: 'Home.tsx', icon: <FileCode className="w-4 h-4" /> },
-  { id: 'ai-tools', label: 'AITools.tsx', icon: <Cpu className="w-4 h-4" /> },
-  { id: 'automation', label: 'Automation.tsx', icon: <Terminal className="w-4 h-4" /> },
+  // { id: 'ai-tools', label: 'AITools.tsx', icon: <Cpu className="w-4 h-4" /> },
   { id: 'mlm-systems', label: 'MLMSystems.tsx', icon: <Globe className="w-4 h-4" /> },
   { id: 'pos-system', label: 'POSInventory.tsx', icon: <ShoppingCart className="w-4 h-4" /> },
+  { id: 'automation', label: 'Automation.tsx', icon: <Terminal className="w-4 h-4" /> },
   { id: 'contact', label: 'Contact.tsx', icon: <Mail className="w-4 h-4" /> },
 ];
 

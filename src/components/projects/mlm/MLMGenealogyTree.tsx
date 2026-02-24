@@ -145,6 +145,14 @@ export default function MLMGenealogyTree() {
 
   const canvasRef = useRef<HTMLDivElement>(null);
   useDragScroll(canvasRef);
+  
+  useEffect(() => {
+    if (!isLoading && canvasRef.current) {
+      const canvas = canvasRef.current;
+      canvas.scrollLeft = (canvas.scrollWidth - canvas.clientWidth) / 2;
+      canvas.scrollTop = 0;
+    }
+  }, [isLoading,state.activeView]);
 
   const tree = useMemo(() => {
     if (state.activeView === 'unilevel') {

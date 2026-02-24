@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MessageSquare, Brain, Database, Bell, ArrowRight, Play, Pause } from 'lucide-react';
 
 const nodes = [
-  { id: 'discord', label: 'Discord', icon: MessageSquare, x: 50, y: 80, color: 'primary' },
+  { id: 'discord', label: 'Lead Forms', icon: MessageSquare, x: 50, y: 80, color: 'primary' },
   { id: 'ai', label: 'AI Analysis', icon: Brain, x: 220, y: 80, color: 'accent' },
   { id: 'db', label: 'Database', icon: Database, x: 390, y: 80, color: 'terminal-purple' },
   { id: 'notify', label: 'Notification', icon: Bell, x: 560, y: 80, color: 'terminal-orange' },
@@ -66,7 +66,7 @@ const WorkflowVisualizerDemo = () => {
         </div>
         <div className="flex items-center gap-2">
           <span className="tech-pill text-primary">n8n</span>
-          <span className="tech-pill text-accent">Discord</span>
+          <span className="tech-pill text-accent">Postgres</span>
           <span className="tech-pill text-terminal-yellow">AI</span>
         </div>
       </div>
@@ -98,21 +98,23 @@ const WorkflowVisualizerDemo = () => {
                 </motion.div>
                 {index < connections.length && (
                   <div className="relative flex items-center">
-                    <div className={`w-12 h-0.5 transition-all duration-300 ${
+                    <div className={`relative w-12 h-0.5 transition-all duration-300 ${
                       activeConnection === index ? 'bg-accent' : 'bg-border'
-                    }`} />
+                    }`} >
+                      {activeConnection === index && (
+                        <motion.div
+                          className="absolute w-3 h-3 rounded-full bg-accent"
+                          style={{ top: '50%', translateY: '-50%' }}
+                          initial={{ left: 0 }}
+                          animate={{ left: '100%' }}
+                          transition={{ duration: 1 }}
+                        />
+                      )}
+                    </div>
                     <ArrowRight className={`w-4 h-4 -ml-1 transition-all duration-300 ${
                       activeConnection === index ? 'text-accent' : 'text-border'
                     }`} />
-                    {activeConnection === index && (
-                      <motion.div
-                        className="absolute w-3 h-3 rounded-full bg-accent"
-                        style={{ top: '50%', translateY: '-50%' }}
-                        initial={{ left: 0 }}
-                        animate={{ left: '100%' }}
-                        transition={{ duration: 0.8 }}
-                      />
-                    )}
+                    
                   </div>
                 )}
               </div>

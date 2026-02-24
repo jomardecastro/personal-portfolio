@@ -1,7 +1,43 @@
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: dev-playground-db
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: devplayground
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devuser -d devplayground"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  api:
+    build: ./server
+    container_name: dev-playground-api
+    environment:
+      DATABASE_URL: postgresql://devuser:devpass@db:5432/devplayground
+      PORT: "4000"
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
   web:
     build: .
     container_name: dev-playground-live
     ports:
       - "3000:80"
+    depends_on:
+      - api
     restart: unless-stopped
+
+volumes:
+  pgdata:

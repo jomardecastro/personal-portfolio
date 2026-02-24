@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import MLMDashboardDemo from '../projects/MLMDashboardDemo';
+import MLMGenealogyTree from '../projects/mlm/MLMGenealogyTree';
 
 const MLMSystemsSection = () => {
   return (
@@ -20,8 +20,8 @@ const MLMSystemsSection = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto">
-          <MLMDashboardDemo />
+        <div className="max-w-6xl mx-auto">
+          <MLMGenealogyTree />
         </div>
       </div>
     </section>

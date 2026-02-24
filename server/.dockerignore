@@ -1,9 +1,5 @@
 node_modules
 dist
 .git
-.gitignore
 *.md
-.vscode
 .env*
-server
-mlm3

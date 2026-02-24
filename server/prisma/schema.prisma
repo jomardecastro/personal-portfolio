@@ -1,0 +1,51 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model MLMSlot {
+  id                  String   @id
+  slot_code           String   @unique
+  owner_name          String
+  sponsor_id          String?
+  placement_id        String?
+  position            String?  // LEFT | RIGHT
+  wallet_balance      Float    @default(0)
+  total_earned        Float    @default(0)
+  rank                String   @default("Starter")
+  membership          String   @default("Basic")
+  personal_count      Int      @default(0)
+  group_count         Int      @default(0)
+  personal_pv         Float    @default(100)
+  group_pv            Float    @default(0)
+  binary_points_left  Float    @default(0)
+  binary_points_right Float    @default(0)
+  created_at          DateTime @default(now())
+
+  sponsor   MLMSlot?  @relation("SponsorRelation", fields: [sponsor_id], references: [id])
+  sponsored MLMSlot[] @relation("SponsorRelation")
+  placer    MLMSlot?  @relation("PlacementRelation", fields: [placement_id], references: [id])
+  placed    MLMSlot[] @relation("PlacementRelation")
+
+  @@map("mlm_slots")
+}
+
+model MLMSetting {
+  key   String @id
+  value String
+
+  @@map("mlm_settings")
+}
+
+model ContactMessage {
+  id         String   @id @default(cuid())
+  email      String
+  message    String
+  created_at DateTime @default(now())
+
+  @@map("contact_messages")
+}

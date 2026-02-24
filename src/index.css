@@ -156,6 +156,71 @@
     @apply text-foreground border-primary;
   }
   
+  /* MLM Genealogy Tree */
+  .mlm-tree {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mlm-tree ul {
+    display: flex;
+    justify-content: center;
+    padding-top: 28px;
+    position: relative;
+  }
+
+  .mlm-tree-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 6px;
+    list-style: none;
+  }
+
+  /* Vertical line up from child to horizontal connector */
+  .mlm-tree ul > .mlm-tree-node::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 28px;
+    background: hsl(var(--border) / 0.5);
+    transform: translateY(-28px);
+  }
+
+  /* Horizontal connector between siblings */
+  .mlm-tree ul > .mlm-tree-node::after {
+    content: '';
+    position: absolute;
+    top: -28px;
+    width: 100%;
+    height: 1px;
+    background: hsl(var(--border) / 0.5);
+  }
+
+  .mlm-tree ul > .mlm-tree-node:first-child::after {
+    left: 50%;
+    width: 50%;
+  }
+
+  .mlm-tree ul > .mlm-tree-node:last-child::after {
+    right: 50%;
+    width: 50%;
+    left: auto;
+  }
+
+  .mlm-tree ul > .mlm-tree-node:only-child::after {
+    display: none;
+  }
+
+  /* Root node shouldn't have connector lines above it */
+  .mlm-tree > .mlm-tree-root::before,
+  .mlm-tree > .mlm-tree-root::after {
+    display: none;
+  }
+
   .matrix-bg {
     background: linear-gradient(180deg, transparent 0%, hsl(var(--background)) 100%),
       repeating-linear-gradient(

@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Terminal, Sparkles } from 'lucide-react';
 
 interface HeroSectionProps {
-  onExplore: () => void;
+  onContact: () => void;
 }
 
-const HeroSection = ({ onExplore }: HeroSectionProps) => {
+const HeroSection = ({ onContact }: HeroSectionProps) => {
   return (
     <section className="min-h-screen flex items-center justify-center relative py-20 px-4">
       <div className="text-center max-w-4xl mx-auto">
@@ -59,11 +59,11 @@ const HeroSection = ({ onExplore }: HeroSectionProps) => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button onClick={onExplore} className="btn-terminal flex items-center gap-2">
+          {/* <button onClick={onExplore} className="btn-terminal flex items-center gap-2">
             <Sparkles className="w-4 h-4" />
             Explore My Tools
-          </button>
-          <a href="#contact" className="btn-outline-terminal flex items-center gap-2">
+          </button> */}
+          <a onClick={onContact} className="btn-outline-terminal flex items-center gap-2">
             Let's Build Something
           </a>
         </motion.div>
@@ -94,7 +94,7 @@ const HeroSection = ({ onExplore }: HeroSectionProps) => {
               <span className="text-terminal-purple">const</span>{' '}
               <span className="text-terminal-blue">developer</span> = {'{'}<br />
               {'  '}<span className="text-accent">name:</span> <span className="text-terminal-orange">"Jomar"</span>,<br />
-              {'  '}<span className="text-accent">skills:</span> [<span className="text-terminal-orange">"AI"</span>, <span className="text-terminal-orange">"Node"</span>],<br />
+              {'  '}<span className="text-accent">skills:</span> [<span className="text-terminal-orange">"Node"</span>, <span className="text-terminal-orange">"Vue"</span>, <span className="text-terminal-orange">"SEO"</span>],<br />
               {'  '}<span className="text-accent">coffee:</span> <span className="text-terminal-purple">true</span><br />
               {'}'};
             </code>

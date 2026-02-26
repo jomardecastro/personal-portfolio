@@ -166,6 +166,19 @@ async function main() {
   }
 
   console.log('Seeded 8 MLM slots');
+
+  // Clear and seed POS products
+  await prisma.posProduct.deleteMany();
+  await prisma.posProduct.createMany({
+    data: [
+      { name: 'Widget Pro', price: 29.99, stock: 45 },
+      { name: 'Gadget X', price: 49.99, stock: 23 },
+      { name: 'Super Tool', price: 19.99, stock: 67 },
+      { name: 'Mega Item', price: 89.99, stock: 12 },
+    ],
+  });
+
+  console.log('Seeded 4 POS products');
 }
 
 main()

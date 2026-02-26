@@ -5,7 +5,7 @@ import { Product } from './types';
 
 interface InventoryPanelProps {
   products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  onProductsChanged: () => void;
 }
 
 const LOW_STOCK_THRESHOLD = 10;
@@ -30,7 +30,7 @@ const StockBadge = ({ stock }: { stock: number }) => {
   );
 };
 
-const InventoryPanel = ({ products, setProducts }: InventoryPanelProps) => {
+const InventoryPanel = ({ products, onProductsChanged }: InventoryPanelProps) => {
   const [restockQty, setRestockQty] = useState<Record<number, string>>({});
   const [confirmDelete, setConfirmDelete] = useState<number | null>(null);
 
@@ -39,35 +39,57 @@ const InventoryPanel = ({ products, setProducts }: InventoryPanelProps) => {
   const [newPrice, setNewPrice] = useState('');
   const [newStock, setNewStock] = useState('');
 
-  const handleRestock = (id: number) => {
-    const qty = parseInt(restockQty[id] ?? '0', 10);
-    if (!qty || qty <= 0) return;
-    setProducts(prev =>
-      prev.map(p => (p.id === id ? { ...p, stock: p.stock + qty } : p))
-    );
-    setRestockQty(prev => ({ ...prev, [id]: '' }));
+  const handleRestock = async (id: number) => {
+    const delta = parseInt(restockQty[id] ?? '0', 10);
+    if (!delta || delta <= 0) return;
+    try {
+      const res = await fetch(`/api/pos/products/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ delta }),
+      });
+      if (!res.ok) throw new Error('Restock failed');
+      setRestockQty(prev => ({ ...prev, [id]: '' }));
+      onProductsChanged();
+    } catch {
+      // silently ignore — user can retry
+    }
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: number) => {
     if (confirmDelete === id) {
-      setProducts(prev => prev.filter(p => p.id !== id));
-      setConfirmDelete(null);
+      try {
+        const res = await fetch(`/api/pos/products/${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error('Delete failed');
+        setConfirmDelete(null);
+        onProductsChanged();
+      } catch {
+        setConfirmDelete(null);
+      }
     } else {
       setConfirmDelete(id);
     }
   };
 
-  const handleAddProduct = () => {
+  const handleAddProduct = async () => {
     const name = newName.trim();
     const price = parseFloat(newPrice);
     const stock = parseInt(newStock, 10);
     if (!name || isNaN(price) || price <= 0 || isNaN(stock) || stock < 0) return;
-
-    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    setProducts(prev => [...prev, { id: newId, name, price, stock }]);
-    setNewName('');
-    setNewPrice('');
-    setNewStock('');
+    try {
+      const res = await fetch('/api/pos/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, price, stock }),
+      });
+      if (!res.ok) throw new Error('Add failed');
+      setNewName('');
+      setNewPrice('');
+      setNewStock('');
+      onProductsChanged();
+    } catch {
+      // silently ignore — user can retry
+    }
   };
 
   const lowStockCount = products.filter(p => p.stock > 0 && p.stock < LOW_STOCK_THRESHOLD).length;

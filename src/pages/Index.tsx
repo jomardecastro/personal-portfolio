@@ -29,9 +29,9 @@ const Index = () => {
     setShowIntro(false);
   };
 
-  const handleExplore = () => {
-    setActiveTab('ai-tools');
-    document.getElementById('ai-tools')?.scrollIntoView({ behavior: 'smooth' });
+  const handleContact = () => {
+    setActiveTab('contact');
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const renderContent = () => {
@@ -39,7 +39,7 @@ const Index = () => {
       case 'home':
         return (
           <>
-            <HeroSection onExplore={handleExplore} />
+            <HeroSection onContact={handleContact} />
             <StatsSection />
             <TechStackSection />
           </>
@@ -55,7 +55,7 @@ const Index = () => {
       case 'contact':
         return <ContactSection />;
       default:
-        return <HeroSection onExplore={handleExplore} />;
+        return <HeroSection onContact={handleContact} />;
     }
   };
 

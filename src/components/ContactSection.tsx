@@ -133,17 +133,17 @@ const ContactSection = () => {
               
               <div className="space-y-4">
                 <a
-                  href="mailto:jomar.decastro07@gmail.com"
+                  href="mailto:connect@jdecastro.dev"
                   className="flex items-center gap-3 p-3 glass-hover rounded-lg group"
                 >
                   <Mail className="w-5 h-5 text-primary" />
                   <span className="text-sm group-hover:text-primary transition-colors">
-                    jomar.decastro07@gmail.com
+                    connect@jdecastro.dev
                   </span>
                 </a>
 
                 <a
-                  href="https://linkedin.com"
+                  href="www.linkedin.com/in/jose-marie-d-903873268"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 glass-hover rounded-lg group"
@@ -151,18 +151,6 @@ const ContactSection = () => {
                   <Linkedin className="w-5 h-5 text-terminal-blue" />
                   <span className="text-sm group-hover:text-terminal-blue transition-colors">
                     LinkedIn Profile
-                  </span>
-                </a>
-
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 glass-hover rounded-lg group"
-                >
-                  <Github className="w-5 h-5 text-foreground" />
-                  <span className="text-sm group-hover:text-accent transition-colors">
-                    GitHub Projects
                   </span>
                 </a>
               </div>
@@ -175,7 +163,7 @@ const ContactSection = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Clock className="w-5 h-5 text-accent" />
-                <span className="font-mono text-sm">Available for US timezones</span>
+                <span className="font-mono text-sm">Available for any timezone</span>
               </div>
             </div>
 

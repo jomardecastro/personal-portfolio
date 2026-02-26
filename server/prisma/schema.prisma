@@ -49,3 +49,13 @@ model ContactMessage {
 
   @@map("contact_messages")
 }
+
+model PosProduct {
+  id         Int      @id @default(autoincrement())
+  name       String
+  price      Float
+  stock      Int      @default(0)
+  created_at DateTime @default(now())
+
+  @@map("pos_products")
+}

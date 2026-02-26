@@ -54,7 +54,7 @@ const EditorTabs = ({ activeTab, onTabChange }: EditorTabsProps) => {
               <div className="w-3 h-3 rounded-full bg-terminal-yellow" />
               <div className="w-3 h-3 rounded-full bg-terminal-green" />
             </div>
-            <span className="ml-3 text-sm text-muted-foreground font-mono">jomar-portfolio</span>
+            <span className="ml-3 text-sm text-muted-foreground font-mono">jomar-decastro</span>
           </div>
           
           {/* Closed tabs dropdown */}

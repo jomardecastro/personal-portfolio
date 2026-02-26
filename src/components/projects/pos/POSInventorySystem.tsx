@@ -1,24 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Package } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Product, CartItem } from './types';
-import { initialProducts } from './seedData';
+import { Product } from './types';
 import POSTerminal from './POSTerminal';
 import InventoryPanel from './InventoryPanel';
 
 const POSInventorySystem = () => {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleStockDeduct = (items: CartItem[]) => {
-    setProducts(prev =>
-      prev.map(product => {
-        const sold = items.find(i => i.id === product.id);
-        if (!sold) return product;
-        return { ...product, stock: Math.max(0, product.stock - sold.quantity) };
-      })
-    );
-  };
+  const fetchProducts = useCallback(async () => {
+    try {
+      const res = await fetch('/api/pos/products');
+      if (!res.ok) throw new Error('Failed to fetch');
+      const data: Product[] = await res.json();
+      setProducts(data);
+      setError(null);
+    } catch {
+      setError('Could not load products');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   return (
     <motion.div
@@ -60,13 +69,22 @@ const POSInventorySystem = () => {
           </TabsList>
         </div>
 
-        <TabsContent value="pos">
-          <POSTerminal products={products} onStockDeduct={handleStockDeduct} />
-        </TabsContent>
-
-        <TabsContent value="inventory">
-          <InventoryPanel products={products} setProducts={setProducts} />
-        </TabsContent>
+        {loading ? (
+          <div className="p-12 text-center font-mono text-sm text-muted-foreground animate-pulse">
+            Loading products...
+          </div>
+        ) : error ? (
+          <div className="p-12 text-center font-mono text-sm text-red-400">{error}</div>
+        ) : (
+          <>
+            <TabsContent value="pos">
+              <POSTerminal products={products} onCheckoutComplete={fetchProducts} />
+            </TabsContent>
+            <TabsContent value="inventory">
+              <InventoryPanel products={products} onProductsChanged={fetchProducts} />
+            </TabsContent>
+          </>
+        )}
       </Tabs>
     </motion.div>
   );

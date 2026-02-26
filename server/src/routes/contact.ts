@@ -22,7 +22,7 @@ router.post('/', async (req: Request, res: Response) => {
     // Send email notification
     if (process.env.RESEND_API_KEY) {
       await resend.emails.send({
-        from: 'Portfolio Contact <onboarding@resend.dev>',
+        from: 'Portfolio Contact <connect@jdecastro.dev>',
         to: 'connect@jdecastro.dev',
         subject: `New message from ${email}`,
         html: `

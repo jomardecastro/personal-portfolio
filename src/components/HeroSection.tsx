@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Terminal, Sparkles } from 'lucide-react';
+import { ArrowDown, Terminal, Sparkles, Download } from 'lucide-react';
 
 interface HeroSectionProps {
   onContact: () => void;
@@ -65,6 +65,14 @@ const HeroSection = ({ onContact }: HeroSectionProps) => {
           </button> */}
           <a onClick={onContact} className="btn-outline-terminal flex items-center gap-2">
             Let's Build Something
+          </a>
+          <a
+            href="/resume.pdf"
+            download="Jose Marie De Castro - Resume.pdf"
+            className="btn-outline-terminal flex items-center gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Download Resume
           </a>
         </motion.div>
 

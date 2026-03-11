@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, FileCode, Terminal, Cpu, Globe, Mail, ShoppingCart } from 'lucide-react';
+import { X, FileCode, Terminal, Cpu, Globe, Mail, ShoppingCart, Briefcase } from 'lucide-react';
 
 interface Tab {
   id: string;
@@ -10,6 +10,7 @@ interface Tab {
 
 const allTabs: Tab[] = [
   { id: 'home', label: 'Home.tsx', icon: <FileCode className="w-4 h-4" /> },
+  { id: 'experience', label: 'Experience.log', icon: <Briefcase className="w-4 h-4" /> },
   // { id: 'ai-tools', label: 'AITools.tsx', icon: <Cpu className="w-4 h-4" /> },
   { id: 'mlm-systems', label: 'MLMSystems.tsx', icon: <Globe className="w-4 h-4" /> },
   { id: 'pos-system', label: 'POSInventory.tsx', icon: <ShoppingCart className="w-4 h-4" /> },
@@ -23,7 +24,7 @@ interface EditorTabsProps {
 }
 
 const EditorTabs = ({ activeTab, onTabChange }: EditorTabsProps) => {
-  const [openTabs, setOpenTabs] = useState<string[]>(['home', 'ai-tools', 'automation', 'mlm-systems', 'pos-system', 'contact']);
+  const [openTabs, setOpenTabs] = useState<string[]>(['home', 'experience', 'ai-tools', 'automation', 'mlm-systems', 'pos-system', 'contact']);
 
   const handleCloseTab = (e: React.MouseEvent, tabId: string) => {
     e.stopPropagation();

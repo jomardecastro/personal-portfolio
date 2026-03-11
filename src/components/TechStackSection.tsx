@@ -4,13 +4,17 @@ import { motion } from 'framer-motion';
 const techStack = {
   Frontend: [
     { name: 'React', color: 'primary', projects: ['AI Blog Writer', 'POS System', 'Dashboard'] },
-    { name: 'Vue.js', color: 'accent', projects: ['AI Blog Writer', 'Client Portals'] },
+    { name: 'Vue.js', color: 'accent', projects: ['AI Blog Writer', 'Client Portals', 'MLM System'] },
+    { name: 'Angular', color: 'terminal-pink', projects: ['MLM Platform', 'Admin Panels'] },
     { name: 'TypeScript', color: 'terminal-blue', projects: ['All Projects'] },
     { name: 'TailwindCSS', color: 'terminal-purple', projects: ['All Projects'] },
+    { name: 'Quasar', color: 'terminal-orange', projects: ['Vue.js Apps'] },
   ],
   Backend: [
     { name: 'Node.js', color: 'accent', projects: ['API Gateway', 'AI Services', 'Webhooks'] },
-    { name: 'PHP', color: 'terminal-purple', projects: ['MLM System', 'Legacy Apps'] },
+    { name: 'PHP', color: 'terminal-purple', projects: ['MLM System', 'WordPress Sites'] },
+    { name: 'Laravel', color: 'destructive', projects: ['MLM Platform', 'Admin Panels'] },
+    { name: 'CakePHP', color: 'terminal-yellow', projects: ['MLM System'] },
     { name: 'Express', color: 'primary', projects: ['White-Label API', 'Microservices'] },
     { name: 'Python', color: 'terminal-yellow', projects: ['AI Scripts', 'Data Processing'] },
   ],
@@ -22,8 +26,10 @@ const techStack = {
   ],
   Databases: [
     { name: 'PostgreSQL', color: 'terminal-blue', projects: ['MLM System', 'API Gateway'] },
-    { name: 'MySQL', color: 'terminal-orange', projects: ['E-commerce', 'CMS'] },
+    { name: 'MySQL', color: 'terminal-orange', projects: ['E-commerce', 'CMS', 'MLM System'] },
+    { name: 'MariaDB', color: 'primary', projects: ['MLM System'] },
     { name: 'MongoDB', color: 'accent', projects: ['Real-time Apps'] },
+    { name: 'Firebase', color: 'terminal-yellow', projects: ['Real-time Features'] },
     { name: 'Redis', color: 'destructive', projects: ['Caching', 'Sessions'] },
   ],
 };

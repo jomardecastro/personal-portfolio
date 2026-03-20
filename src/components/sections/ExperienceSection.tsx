@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, GraduationCap, Award, ChevronDown, ChevronRight, MapPin, Calendar, Monitor, Gift, Users } from 'lucide-react';
+import { Briefcase, GraduationCap, Award, ChevronDown, ChevronRight, MapPin, Calendar, Monitor, Gift, Users, ExternalLink, CalendarCheck } from 'lucide-react';
 
 interface Experience {
   id: string;
@@ -211,45 +211,83 @@ const ExperienceSection = () => {
           </div>
         </motion.div>
 
-        {/* Side Project */}
+        {/* Side Projects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass-hover rounded-xl p-6 mb-6"
+          className="mb-6"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-secondary/50 text-terminal-green">
-              <Monitor className="w-5 h-5" />
-            </div>
-            <h3 className="font-mono font-bold text-terminal-green">Side Project</h3>
-            <span className="text-xs font-mono text-muted-foreground ml-auto">January 2024</span>
-          </div>
-          <h4 className="font-mono text-sm text-foreground font-semibold mb-2">
-            Loyalty Rewards System
-          </h4>
-          <p className="text-sm text-muted-foreground mb-3">
-            Built a custom Loyalty Reward System for an internet cafe using Electron + Node.js, enabling point tracking, rewards redemption, and customer management.
-          </p>
-          <div className="flex flex-wrap gap-2 mb-3">
-            {['Electron', 'Node.js', 'JavaScript'].map((tech) => (
-              <span
-                key={tech}
-                className="text-xs font-mono px-2 py-1 rounded bg-secondary/50 text-muted-foreground border border-border/50"
+          <h3 className="text-lg font-mono font-bold mb-4 text-muted-foreground">
+            {'> '}<span className="text-gradient-purple">Side Projects</span>
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Dental Clinic Booking */}
+            <div className="glass-hover rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 rounded-lg bg-secondary/50 text-terminal-green">
+                  <CalendarCheck className="w-5 h-5" />
+                </div>
+                <h4 className="font-mono font-bold text-terminal-green">Dental Clinic Booking</h4>
+                <span className="text-xs font-mono text-muted-foreground ml-auto">March 2026</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                Dental clinic website with an online booking system — customers can reserve time slots and manage their appointments.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {['React', 'Express', 'Prisma', 'PostgreSQL'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-xs font-mono px-2 py-1 rounded bg-secondary/50 text-muted-foreground border border-border/50"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <a
+                href="https://msangalang.jdecastro.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:underline"
               >
-                {tech}
-              </span>
-            ))}
-          </div>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
-            <span className="flex items-center gap-1">
-              <Gift className="w-3 h-3 text-terminal-orange" />
-              Point Tracking & Rewards
-            </span>
-            <span className="flex items-center gap-1">
-              <Users className="w-3 h-3 text-terminal-blue" />
-              Customer Management
-            </span>
+                <ExternalLink className="w-3 h-3" />
+                msangalang.jdecastro.dev
+              </a>
+            </div>
+
+            {/* Loyalty Rewards System */}
+            <div className="glass-hover rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 rounded-lg bg-secondary/50 text-terminal-orange">
+                  <Monitor className="w-5 h-5" />
+                </div>
+                <h4 className="font-mono font-bold text-terminal-orange">Loyalty Rewards System</h4>
+                <span className="text-xs font-mono text-muted-foreground ml-auto">January 2024</span>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                Custom Loyalty Reward System for an internet cafe using Electron + Node.js, enabling point tracking, rewards redemption, and customer management.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {['Electron', 'Node.js', 'JavaScript'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-xs font-mono px-2 py-1 rounded bg-secondary/50 text-muted-foreground border border-border/50"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <div className="flex items-center gap-4 text-xs text-muted-foreground font-mono">
+                <span className="flex items-center gap-1">
+                  <Gift className="w-3 h-3 text-terminal-orange" />
+                  Point Tracking & Rewards
+                </span>
+                <span className="flex items-center gap-1">
+                  <Users className="w-3 h-3 text-terminal-blue" />
+                  Customer Management
+                </span>
+              </div>
+            </div>
           </div>
         </motion.div>
 

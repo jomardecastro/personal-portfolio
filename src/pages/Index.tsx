@@ -12,6 +12,7 @@ import AutomationSection from '../components/sections/AutomationSection';
 import MLMSystemsSection from '../components/sections/MLMSystemsSection';
 import POSSystemSection from '../components/sections/POSSystemSection';
 import ExperienceSection from '../components/sections/ExperienceSection';
+import SideProjectsSection from '../components/sections/SideProjectsSection';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -47,6 +48,8 @@ const Index = () => {
         );
       case 'experience':
         return <ExperienceSection />;
+      case 'side-projects':
+        return <SideProjectsSection />;
       case 'ai-tools':
         return <AIToolsSection />;
       case 'automation':

@@ -1,16 +1,35 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Clock, Users, Zap, TrendingUp } from 'lucide-react';
+import { Clock, Users, Layers, Database } from 'lucide-react';
 
-const stats = [
+type Stat =
+  | {
+      type: 'numeric';
+      icon: React.ReactNode;
+      value: number;
+      suffix: string;
+      label: string;
+      color: string;
+    }
+  | {
+      type: 'text';
+      icon: React.ReactNode;
+      headline: string;
+      subtitle: string;
+      color: string;
+    };
+
+const stats: Stat[] = [
   {
+    type: 'numeric',
     icon: <Clock className="w-6 h-6" />,
     value: 6,
     suffix: '+',
-    label: 'Years Experience',
+    label: 'Years Shipping Production Code',
     color: 'text-primary',
   },
   {
+    type: 'numeric',
     icon: <Users className="w-6 h-6" />,
     value: 10000,
     suffix: '+',
@@ -18,17 +37,17 @@ const stats = [
     color: 'text-accent',
   },
   {
-    icon: <Zap className="w-6 h-6" />,
-    value: 80,
-    suffix: '%',
-    label: 'Time Reduction',
+    type: 'text',
+    icon: <Layers className="w-6 h-6" />,
+    headline: 'Multi-System',
+    subtitle: 'MLM · POS · School · E-commerce',
     color: 'text-terminal-purple',
   },
   {
-    icon: <TrendingUp className="w-6 h-6" />,
-    value: 40,
-    suffix: '%',
-    label: 'Performance Boost',
+    type: 'text',
+    icon: <Database className="w-6 h-6" />,
+    headline: 'Backend-Focused',
+    subtitle: 'APIs · Workflows · Data',
     color: 'text-terminal-orange',
   },
 ];
@@ -38,11 +57,11 @@ const AnimatedCounter = ({ value, suffix, inView }: { value: number; suffix: str
 
   useEffect(() => {
     if (!inView) return;
-    
+
     let start = 0;
     const duration = 2000;
     const increment = value / (duration / 16);
-    
+
     const timer = setInterval(() => {
       start += increment;
       if (start >= value) {
@@ -92,7 +111,7 @@ const StatsSection = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <motion.div
-              key={stat.label}
+              key={stat.type === 'numeric' ? stat.label : stat.headline}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -102,10 +121,21 @@ const StatsSection = () => {
               <div className={`inline-flex p-3 rounded-lg bg-secondary/50 ${stat.color} mb-4`}>
                 {stat.icon}
               </div>
-              <div className={stat.color}>
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={inView} />
-              </div>
-              <p className="text-muted-foreground text-sm mt-2 font-mono">{stat.label}</p>
+              {stat.type === 'numeric' ? (
+                <>
+                  <div className={stat.color}>
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={inView} />
+                  </div>
+                  <p className="text-muted-foreground text-sm mt-2 font-mono">{stat.label}</p>
+                </>
+              ) : (
+                <>
+                  <div className={`font-mono font-bold text-2xl md:text-3xl ${stat.color}`}>
+                    {stat.headline}
+                  </div>
+                  <p className="text-muted-foreground text-sm mt-2 font-mono">{stat.subtitle}</p>
+                </>
+              )}
             </motion.div>
           ))}
         </div>

@@ -13,10 +13,11 @@ const MLMSystemsSection = () => {
         >
           <h2 className="text-2xl md:text-3xl font-mono font-bold mb-4">
             <span className="text-muted-foreground">{'// '}</span>
-            <span className="text-gradient-primary">MLM Systems</span>
+            <span className="text-gradient-primary">MLM Systems — Backend Logic at Scale</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Multi-level marketing platforms with real-time commission tracking.
+            Backend logic for MLM platforms serving 10,000+ users — downline trees, commission
+            calculation, payout workflows. Heavy domain logic, built for correctness under scale.
           </p>
         </motion.div>
 

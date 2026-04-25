@@ -11,7 +11,7 @@ interface Tab {
 const allTabs: Tab[] = [
   { id: 'home', label: 'Home.tsx', icon: <FileCode className="w-4 h-4" /> },
   { id: 'experience', label: 'Experience.log', icon: <Briefcase className="w-4 h-4" /> },
-  { id: 'side-projects', label: 'SideProjects.tsx', icon: <Rocket className="w-4 h-4" /> },
+  { id: 'side-projects', label: 'FeaturedWork.tsx', icon: <Rocket className="w-4 h-4" /> },
   // { id: 'ai-tools', label: 'AITools.tsx', icon: <Cpu className="w-4 h-4" /> },
   { id: 'mlm-systems', label: 'MLMSystems.tsx', icon: <Globe className="w-4 h-4" /> },
   { id: 'pos-system', label: 'POSInventory.tsx', icon: <ShoppingCart className="w-4 h-4" /> },

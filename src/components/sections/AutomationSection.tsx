@@ -13,10 +13,11 @@ const AutomationSection = () => {
         >
           <h2 className="text-2xl md:text-3xl font-mono font-bold mb-4">
             <span className="text-muted-foreground">{'// '}</span>
-            <span className="text-gradient-purple">Automation Systems</span>
+            <span className="text-gradient-purple">Workflow Automation & Integrations</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Streamlined workflows that save hours of manual work every day.
+            Workflow automation with webhooks, queues, and scheduled jobs. Integrations with
+            OpenAI, Zapier, and internal tools — replacing manual touchpoints with code.
           </p>
         </motion.div>
 

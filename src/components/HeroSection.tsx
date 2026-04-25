@@ -55,10 +55,10 @@ const HeroSection = ({ onContact }: HeroSectionProps) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-2xl text-muted-foreground mb-4 font-mono"
+          className="text-lg md:text-xl text-muted-foreground mb-4 font-mono max-w-3xl mx-auto"
         >
-          I build <span className="text-primary">backend systems</span> with real-world{' '}
-          <span className="text-accent">business logic and workflows</span>.
+          6+ years building <span className="text-primary">APIs, role-based systems, and transactional workflows</span> using{' '}
+          <span className="text-accent">Node.js, Express, Prisma, and PostgreSQL</span>.
         </motion.p>
 
         <motion.p
@@ -67,10 +67,8 @@ const HeroSection = ({ onContact }: HeroSectionProps) => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-muted-foreground mb-8 max-w-2xl mx-auto"
         >
-          6+ years building APIs, role-based systems, and transactional workflows using
-          Node.js, Express, Prisma, and PostgreSQL. Worked on MLM platforms serving 10,000+
-          users, POS/inventory systems, and multi-frontend applications handling complex
-          domain logic.
+          Worked on MLM platforms serving 10,000+ users, POS/inventory systems, and
+          multi-frontend applications handling complex domain logic.
         </motion.p>
 
         <motion.ul

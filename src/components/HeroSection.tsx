@@ -1,173 +1,83 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Terminal, Download } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
+import HeroShowcase from './HeroShowcase';
 
 interface HeroSectionProps {
   onContact: () => void;
 }
 
-const bullets = [
-  'REST APIs — Express, Prisma, PostgreSQL',
-  'Role-based portals — admin, staff, vendor, customer',
-  'Payment flows, order tracking, inventory transactions',
-  'Workflow automation — Zapier, webhooks, OpenAI integrations',
-  'Complex domain logic — commissions, grading, booking, attendance',
+const fade = (delay: number) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, delay },
+});
+
+// Four live client storefronts — the visitor picks; nothing auto-advances.
+const SHOTS = [
+  { src: '/work/omni/02-agp.webp', url: 'alphaglobal-prestige.com', alt: 'Alpha Global Prestige storefront' },
+  { src: '/work/omni/05-socialpreneur.webp', url: 'socialpreneurinc.com', alt: 'SocialPreneur Inc. storefront' },
+  { src: '/work/omni/04-ultraproactive.webp', url: 'ultraproactive.ph', alt: 'Ultra Proactive storefront' },
+  { src: '/work/omni/01-successmall.webp', url: 'successmall.shopping', alt: 'Success Mall storefront' },
 ];
 
-const HeroSection = ({ onContact }: HeroSectionProps) => {
-  return (
-    <section className="min-h-screen flex items-center justify-center relative py-20 px-4">
-      <div className="text-center max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-mono mb-8">
-            <Terminal className="w-4 h-4 text-primary" />
-            <span className="text-muted-foreground">Backend / Fullstack Developer</span>
-            <span className="text-primary">—</span>
-            <span className="text-accent">Node.js · Express · Prisma · PostgreSQL</span>
-          </div>
-        </motion.div>
+const HeroSection = ({ onContact }: HeroSectionProps) => (
+  <section className="px-4 pt-20 md:pt-28">
+    <div className="mx-auto max-w-5xl">
+      <motion.div {...fade(0)} className="hairline mb-8 w-12" />
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold font-mono mb-3 leading-tight"
-        >
-          <span className="text-gradient-primary">Backend / Fullstack Developer</span>
-          <br />
-          <span className="text-foreground">Building systems with real-world business logic</span>
-        </motion.h1>
+      <motion.p {...fade(0.05)} className="text-sm font-semibold text-primary">
+        Backend / Fullstack Developer · 8 years
+      </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-sm font-mono text-muted-foreground mb-6"
-        >
-          — Jose Marie De Castro
-        </motion.p>
+      <motion.h1 {...fade(0.1)} className="display mt-4 max-w-[19ch]">
+        I build systems where the numbers have to be right.
+      </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-xl text-muted-foreground mb-4 font-mono max-w-3xl mx-auto"
-        >
-          6+ years building <span className="text-primary">APIs, role-based systems, and transactional workflows</span> using{' '}
-          <span className="text-accent">Node.js, Express, Prisma, and PostgreSQL</span>.
-        </motion.p>
+      <motion.p {...fade(0.18)} className="lede mt-6 max-w-[58ch]">
+        Commerce, point of sale, inventory, commissions and learning — modular systems running in
+        production for six businesses.
+      </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-muted-foreground mb-8 max-w-2xl mx-auto"
+      <motion.div {...fade(0.26)} className="mt-9 flex flex-wrap items-center gap-3">
+        <a
+          href="#systems"
+          className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-all hover:brightness-105"
         >
-          Worked on MLM platforms serving 10,000+ users, POS/inventory systems, and
-          multi-frontend applications handling complex domain logic.
-        </motion.p>
+          View my work
+          <ArrowRight className="h-4 w-4" />
+        </a>
+        <button
+          onClick={onContact}
+          className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+        >
+          Get in touch
+        </button>
+        <a
+          href="/resume.pdf"
+          download="Jose Marie De Castro - Resume.pdf"
+          className="inline-flex items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <Download className="h-4 w-4" />
+          Résumé
+        </a>
+      </motion.div>
 
-        <motion.ul
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mb-12 max-w-2xl mx-auto space-y-2 text-left font-mono text-sm md:text-base text-muted-foreground"
-        >
-          {bullets.map((bullet) => (
-            <li key={bullet} className="flex gap-2">
-              <span className="text-primary flex-shrink-0">{'>'}</span>
-              <span>{bullet}</span>
-            </li>
-          ))}
-        </motion.ul>
+      {/*
+        One large screenshot with thumbnails to swap it. An earlier carousel here
+        moved while the headline was still being read and was never visually
+        settled because it bled off the edge — so nothing auto-advances now.
+      */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.34 }}
+        className="mt-14"
+      >
+        <HeroShowcase shots={SHOTS} />
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a onClick={onContact} className="btn-outline-terminal flex items-center gap-2">
-            Let's Build Something
-          </a>
-          <a
-            href="/resume.pdf"
-            download="Jose Marie De Castro - Resume.pdf"
-            className="btn-outline-terminal flex items-center gap-2"
-          >
-            <Download className="w-4 h-4" />
-            Download Resume
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <ArrowDown className="w-6 h-6 text-muted-foreground" />
-          </motion.div>
-        </motion.div>
-
-        {/* Decorative code block */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 0.6, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="hidden lg:block absolute left-10 top-1/3 glass rounded-lg p-4 text-left max-w-sm"
-        >
-          <pre className="text-xs font-mono text-muted-foreground">
-            <code>
-              <span className="text-terminal-purple">const</span>{' '}
-              <span className="text-terminal-blue">engineer</span> = {'{'}<br />
-              {'  '}<span className="text-accent">name:</span>{' '}
-              <span className="text-terminal-orange">"Jomar"</span>,<br />
-              {'  '}<span className="text-accent">stack:</span> [
-              <span className="text-terminal-orange">"Node"</span>,{' '}
-              <span className="text-terminal-orange">"Express"</span>,{' '}
-              <span className="text-terminal-orange">"Prisma"</span>,{' '}
-              <span className="text-terminal-orange">"Postgres"</span>],<br />
-              {'  '}<span className="text-accent">ships:</span>{' '}
-              <span className="text-terminal-purple">true</span><br />
-              {'}'};
-            </code>
-          </pre>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 0.6, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="hidden lg:block absolute right-10 top-1/2 glass rounded-lg p-4 text-left max-w-sm"
-        >
-          <pre className="text-xs font-mono text-muted-foreground">
-            <code>
-              router.<span className="text-terminal-blue">post</span>(
-              <span className="text-terminal-orange">"/orders"</span>,{' '}
-              <span className="text-terminal-purple">async</span> (req, res) =&gt; {'{'}<br />
-              {'  '}<span className="text-terminal-purple">const</span> order ={' '}
-              <span className="text-terminal-purple">await</span><br />
-              {'    '}prisma.order.<span className="text-terminal-blue">create</span>({'{'}<br />
-              {'      '}<span className="text-accent">data:</span> req.body<br />
-              {'    '}{'}'});<br />
-              {'  '}<span className="text-terminal-purple">return</span> res.
-              <span className="text-terminal-blue">json</span>(order);<br />
-              {'}'});
-            </code>
-          </pre>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default HeroSection;

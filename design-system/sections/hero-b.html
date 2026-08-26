@@ -1,0 +1,96 @@
+<!-- @dsCard group="01 · Hero" name="Hero B — editorial, screenshots bleed off" subtitle="Full-width headline, shots running off the right edge" -->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero B — editorial, screenshots bleed off — Portfolio DS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:0 0% 100%;--fg:222 47% 11%;
+  --card:0 0% 100%;--muted:210 40% 96%;--muted-fg:215 16% 47%;
+  --border:214 22% 90%;
+  --primary:199 89% 48%;--primary-fg:0 0% 100%;
+  --success:160 84% 30%;--destructive:349 75% 45%;
+  --radius:10px;
+  --brand-a:96 52% 60%;--brand-b:196 100% 46%;
+  --ink:222 47% 6%;            /* dark band background */
+  --ink-fg:210 40% 96%;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --shadow-card:0 1px 2px hsl(222 47% 11%/.05),0 4px 16px hsl(222 47% 11%/.06);
+  --shadow-lift:0 8px 24px hsl(222 47% 11%/.10),0 32px 64px hsl(222 47% 11%/.14);
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--sans);background:hsl(var(--muted));color:hsl(var(--fg));
+  line-height:1.5;-webkit-font-smoothing:antialiased;font-size:15px}
+.doc{max-width:1240px;margin:0 auto;padding:26px}
+.head{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:hsl(var(--muted-fg));margin-bottom:14px}
+.frame{background:hsl(var(--bg));border:1px solid hsl(var(--border));border-radius:16px;overflow:hidden}
+.frame.dark{background:hsl(var(--ink));color:hsl(var(--ink-fg));border-color:hsl(217 30% 20%)}
+.pad{padding:56px 56px}
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.03em}
+p{margin:0}
+.muted{color:hsl(var(--muted-fg))}
+.dark .muted{color:hsl(215 20% 65%)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.hairline{height:3px;border-radius:99px;background:linear-gradient(90deg,hsl(var(--brand-a)),hsl(var(--brand-b)))}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.eyebrow{font-size:13px;font-weight:600;color:hsl(var(--primary))}
+/* --- the wider type scale this round is about --- */
+.display{font-size:68px;line-height:1.02;letter-spacing:-.035em}
+.display-sm{font-size:52px;line-height:1.05;letter-spacing:-.03em}
+.h2{font-size:34px;line-height:1.12}
+.lede{font-size:18px;line-height:1.6;color:hsl(var(--muted-fg))}
+.dark .lede{color:hsl(215 20% 72%)}
+/* --- browser chrome so screenshots read as product --- */
+.browser{border-radius:12px;overflow:hidden;background:hsl(var(--bg));
+  border:1px solid hsl(var(--border));box-shadow:var(--shadow-lift)}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;
+  background:hsl(var(--muted));border-bottom:1px solid hsl(var(--border))}
+.browser .bar i{width:9px;height:9px;border-radius:99px;background:hsl(var(--border));display:block}
+.browser .bar span{margin-left:8px;font-family:var(--mono);font-size:10.5px;color:hsl(var(--muted-fg))}
+.browser img{display:block;width:100%}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:10px;border:1px solid transparent;cursor:pointer;text-decoration:none}
+.btn-primary{background:hsl(var(--primary));color:hsl(var(--primary-fg))}
+.btn-outline{background:transparent;border-color:hsl(var(--border));color:hsl(var(--fg))}
+.dark .btn-outline{border-color:hsl(217 30% 28%);color:hsl(var(--ink-fg))}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:4px 11px;
+  border-radius:99px;border:1px solid hsl(var(--border));background:hsl(var(--muted));color:hsl(var(--muted-fg))}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;
+  padding:3px 10px;border-radius:99px;border:1px solid}
+.status.live{border-color:hsl(var(--success)/.4);color:hsl(var(--success));background:hsl(var(--success)/.08)}
+.status.stg{border-color:hsl(var(--border));color:hsl(var(--muted-fg));background:hsl(var(--muted))}
+.dark .status.live{background:hsl(var(--success)/.14)}
+.dark .status.stg{border-color:hsl(217 30% 28%);background:transparent;color:hsl(215 20% 65%)}
+.metric .n{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:30px;font-weight:600;letter-spacing:-.02em}
+.metric .l{font-size:12.5px;color:hsl(var(--muted-fg));margin-top:2px}
+.note{font-size:12px;color:hsl(var(--muted-fg));padding:10px 14px;border-top:1px dashed hsl(var(--border));background:hsl(var(--muted)/.5)}
+</style>
+</head><body>
+<div class="doc">
+  <p class="head">Hero B — editorial bleed</p>
+  <div class="frame" style="overflow:hidden">
+    <div style="padding:56px 56px 36px">
+      <p class="eyebrow">Backend / Fullstack Developer · 6+ years</p>
+      <h1 class="display" style="margin:14px 0 18px;max-width:20ch">I build systems where the numbers have to be right.</h1>
+      <p class="lede" style="max-width:60ch">Commerce, point of sale, inventory, commissions and learning —
+      modular systems running in production for six businesses.</p>
+      <div class="row" style="margin-top:26px">
+        <a class="btn btn-primary">View my work →</a>
+        <a class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+    <div style="display:flex;gap:20px;padding:0 0 0 56px;margin-bottom:-70px">
+      <div class="browser" style="flex:0 0 46%"><div class="bar"><i></i><i></i><i></i><span>alphaglobal-prestige.com</span></div><img src="../assets/shot-agp.webp" alt=""></div>
+      <div class="browser" style="flex:0 0 46%"><div class="bar"><i></i><i></i><i></i><span>ultraproactive.ph</span></div><img src="../assets/shot-upmi.webp" alt=""></div>
+      <div class="browser" style="flex:0 0 46%"><div class="bar"><i></i><i></i><i></i><span>teslabtech.com</span></div><img src="../assets/shot-teslab.webp" alt=""></div>
+    </div>
+    <div style="height:80px"></div>
+  </div>
+  <p class="note" style="margin-top:12px;border:1px dashed hsl(var(--border));border-radius:10px">The row deliberately runs past the right edge — signals there is more, and fills the dead space Round 1 left.</p>
+</div>
+</body></html>

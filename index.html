@@ -13,6 +13,27 @@
     <meta property="og:description" content="Personal Website of Jose Marie De Castro" />
     <meta property="og:type" content="website" />
 
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+    <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+    <meta name="theme-color" content="#0C1524" />
+
+    <!-- Apply the stored/system theme before first paint so there is no flash of the wrong theme. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var isDark =
+            stored === 'dark' ||
+            ((!stored || stored === 'system') &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) document.documentElement.classList.add('dark');
+        } catch (e) {
+          /* localStorage unavailable — fall back to the light default */
+        }
+      })();
+    </script>
   </head>
 
   <body>

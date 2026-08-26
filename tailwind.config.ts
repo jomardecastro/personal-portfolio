@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: ["class"],
@@ -34,6 +36,18 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        brand: {
+          a: "hsl(var(--brand-a))",
+          b: "hsl(var(--brand-b))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -74,6 +88,11 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xl: "calc(var(--radius) + 4px)",
+      },
+      boxShadow: {
+        card: "var(--shadow-card)",
+        lift: "var(--shadow-lift)",
       },
       keyframes: {
         "accordion-down": {
@@ -91,5 +110,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [animate, typography],
 } satisfies Config;

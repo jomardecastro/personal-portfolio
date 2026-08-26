@@ -1,104 +1,62 @@
-import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import TerminalIntro from '../components/TerminalIntro';
-import MatrixBackground from '../components/MatrixBackground';
-import EditorTabs from '../components/EditorTabs';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import SiteNav from '../components/SiteNav';
+import SiteFooter from '../components/SiteFooter';
 import HeroSection from '../components/HeroSection';
 import StatsSection from '../components/StatsSection';
 import TechStackSection from '../components/TechStackSection';
 import ContactSection from '../components/ContactSection';
-import AIToolsSection from '../components/sections/AIToolsSection';
-import AutomationSection from '../components/sections/AutomationSection';
-import MLMSystemsSection from '../components/sections/MLMSystemsSection';
-import POSSystemSection from '../components/sections/POSSystemSection';
 import ExperienceSection from '../components/sections/ExperienceSection';
 import FeaturedWorkSection from '../components/sections/FeaturedWorkSection';
-import CapabilitiesSection from '../components/sections/CapabilitiesSection';
+import SystemsSection from '../components/sections/SystemsSection';
 
 const Index = () => {
-  const [showIntro, setShowIntro] = useState(true);
-  const [activeTab, setActiveTab] = useState('home');
+  const { hash } = useLocation();
 
-  // Check if intro was shown before (session only)
+  // Support /#work style deep links arriving from a case-study page.
+  //
+  // A single scroll on mount silently fails: at that point the images have not
+  // loaded, so the document is far shorter than its final height and there is
+  // nowhere to scroll to. Re-run as layout settles, and stop early once the
+  // target is actually in place.
   useEffect(() => {
-    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
-    if (hasSeenIntro) {
-      setShowIntro(false);
-    }
-  }, []);
+    if (!hash) return;
+    let done = false;
+    const timers: number[] = [];
 
-  const handleIntroComplete = () => {
-    sessionStorage.setItem('hasSeenIntro', 'true');
-    setShowIntro(false);
-  };
+    const jump = () => {
+      const el = document.querySelector(hash);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top;
+      // Within a few px of the scroll-margin offset means we already landed.
+      if (done && Math.abs(top - 80) < 8) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      done = true;
+    };
+
+    for (const delay of [0, 120, 400, 900]) {
+      timers.push(window.setTimeout(jump, delay));
+    }
+    return () => timers.forEach(window.clearTimeout);
+  }, [hash]);
 
   const handleContact = () => {
-    setActiveTab('contact');
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'home':
-        return (
-          <>
-            <HeroSection onContact={handleContact} />
-            <CapabilitiesSection />
-            <StatsSection />
-            <TechStackSection />
-          </>
-        );
-      case 'experience':
-        return <ExperienceSection />;
-      case 'side-projects':
-        return <FeaturedWorkSection />;
-      case 'ai-tools':
-        return <AIToolsSection />;
-      case 'automation':
-        return <AutomationSection />;
-      case 'mlm-systems':
-        return <MLMSystemsSection />;
-      case 'pos-system':
-        return <POSSystemSection />;
-      case 'contact':
-        return <ContactSection />;
-      default:
-        return <HeroSection onContact={handleContact} />;
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground relative">
-      <AnimatePresence>
-        {showIntro && <TerminalIntro onComplete={handleIntroComplete} />}
-      </AnimatePresence>
-
-      {!showIntro && (
-        <>
-          <MatrixBackground />
-          <div className="relative z-10">
-            <EditorTabs activeTab={activeTab} onTabChange={setActiveTab} />
-            <main id={activeTab}>
-              {renderContent()}
-            </main>
-            
-            {/* Footer */}
-            <footer className="py-8 px-4 border-t border-border">
-              <div className="container mx-auto text-center">
-                <p className="text-sm text-muted-foreground font-mono">
-                  <span className="text-primary">{'</'}</span>
-                  Jose Marie De Castro
-                  <span className="text-primary">{'>'}</span>
-                  {' '}· Built with passion & lots of ☕
-                </p>
-                <p className="text-xs text-muted-foreground/50 mt-2 font-mono">
-                  © {new Date().getFullYear()} · All rights reserved
-                </p>
-              </div>
-            </footer>
-          </div>
-        </>
-      )}
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteNav />
+      <main>
+        <HeroSection onContact={handleContact} />
+        <SystemsSection />
+        <FeaturedWorkSection />
+        <StatsSection />
+        <ExperienceSection />
+        <TechStackSection />
+        <ContactSection />
+      </main>
+      <SiteFooter />
     </div>
   );
 };

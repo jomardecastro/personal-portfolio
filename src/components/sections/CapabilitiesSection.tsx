@@ -11,19 +11,19 @@ const capabilities = [
   {
     icon: <UsersRound className="w-6 h-6" />,
     title: 'Role-Based Systems',
-    color: 'text-accent',
+    color: 'text-primary',
     body: 'Multi-role portals where admin, staff, vendor, and customer each see a different slice of the data, with permissions that hold up when workflows get complicated. Audit trails, support-side impersonation, per-role scopes.',
   },
   {
     icon: <CreditCard className="w-6 h-6" />,
     title: 'Payment & Tracking Systems',
-    color: 'text-terminal-purple',
+    color: 'text-primary',
     body: 'Order lifecycles, manual-payment proof flows, status transitions, stock movement, refunds. Systems that deal with real money and real inventory — where the numbers have to match at the end of the day.',
   },
   {
     icon: <Workflow className="w-6 h-6" />,
     title: 'Automation & Integrations',
-    color: 'text-terminal-orange',
+    color: 'text-primary',
     body: 'OpenAI, Zapier, webhooks, third-party APIs. Queue-driven workflows, scheduled jobs, notifications — internal tools that replace hours of manual work with a single endpoint.',
   },
 ];
@@ -31,18 +31,18 @@ const capabilities = [
 const CapabilitiesSection = () => {
   return (
     <section className="py-20 px-4">
-      <div className="container mx-auto">
+      <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12 max-w-3xl mx-auto"
+          className="mb-10"
         >
-          <h2 className="text-2xl md:text-3xl font-mono font-bold mb-4">
-            <span className="text-muted-foreground">{'// '}</span>
-            <span className="text-gradient-primary">What I Can Build</span>
+          <div className="hairline mb-5 w-12" />
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+            What I can build
           </h2>
-          <p className="text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-muted-foreground">
             I focus on building systems that reflect real workflows — not just features. That
             means designing around how data moves, how roles interact, and how edge cases are
             handled in production.
@@ -57,12 +57,12 @@ const CapabilitiesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="glass-hover rounded-xl p-6"
+              className="surface-hover p-6"
             >
-              <div className={`inline-flex p-3 rounded-lg bg-secondary/50 ${capability.color} mb-4`}>
+              <div className={`inline-flex p-3 rounded-lg bg-muted ${capability.color} mb-4`}>
                 {capability.icon}
               </div>
-              <h3 className={`font-mono font-bold text-lg mb-3 ${capability.color}`}>
+              <h3 className={`font-semibold text-lg mb-3 tracking-tight ${capability.color}`}>
                 {capability.title}
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">

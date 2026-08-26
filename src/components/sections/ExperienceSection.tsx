@@ -1,72 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Briefcase, GraduationCap, Award, ChevronDown, ChevronRight, MapPin, Calendar } from 'lucide-react';
-
-interface Experience {
-  id: string;
-  role: string;
-  company: string;
-  period: string;
-  location: string;
-  description: string;
-  highlights: string[];
-  techStack: string[];
-  color: string;
-}
-
-const experiences: Experience[] = [
-  {
-    id: 'asap',
-    role: 'Freelance VA / Full-Stack Developer',
-    company: 'ASAP Cash Offer & Cash For Houses',
-    period: 'March 2021 - Present',
-    location: 'United States (Remote)',
-    description: 'Lead Generation Website, and the owner does SEO work for other websites too.',
-    highlights: [
-      'Developed AI-powered blog writing tool using Vue.js and Node.js integrated with OpenAI REST API, reducing content creation time by 80%',
-      'Expanded the AI tool into a white-label API service accessible via webhooks, now serving multiple third-party clients',
-      'Built intelligent lead processing automation using WordPress, Zapier, and Grok AI API for real-time skip tracing and comparative market analysis',
-      'Created multiple funnel-type WordPress websites driving conversions and lead generation for real estate investment business',
-      'Collaborated directly with client to enhance SEO strategies across 10+ websites, improving search rankings and organic traffic',
-    ],
-    techStack: ['Vue.js', 'Node.js', 'PHP', 'WordPress', 'OpenAI API', 'Grok AI', 'Zapier', 'MySQL'],
-    color: 'text-primary',
-  },
-  {
-    id: 'geer',
-    role: 'Mid-Full Stack Web Developer',
-    company: 'GEER IT Solutions',
-    period: 'December 2019 - June 2025',
-    location: 'Taguig, Philippines',
-    description: 'Enterprise software development for MLM, POS, and e-commerce platforms.',
-    highlights: [
-      'Developed and maintained white-label MLM system serving 10,000+ active users across multiple client deployments',
-      'Led small development team in migrating MLM system codebase to new architecture with zero downtime',
-      'Built POS and Inventory Management Systems for multiple retail clients with real-time transaction processing',
-      'Optimized compensation plan algorithms and refactored POS system, improving performance by 40%',
-      'Converted Figma designs into responsive, pixel-perfect HTML/CSS for multiple web applications',
-      'Received Leadership Award (December 2020) for mentoring junior developers and leading successful project deliveries',
-    ],
-    techStack: ['PHP', 'Laravel', 'CakePHP', 'Angular', 'Vue.js', 'MySQL', 'MariaDB', 'Git'],
-    color: 'text-accent',
-  },
-  {
-    id: 'digima',
-    role: 'Junior Web Developer',
-    company: 'Digima Web Solutions',
-    period: 'March 2018 - December 2019',
-    location: 'Taguig City, Philippines',
-    description: 'MLM platform development with Angular and Laravel.',
-    highlights: [
-      'Developed Admin Panel and Member Areas for MLM platform using Angular (frontend) and Laravel (backend)',
-      'Implemented role-based access control and user management systems',
-      'Provided technical support and bug resolution, including after-hours emergency fixes for critical production issues',
-      'Collaborated with senior developers to implement features and maintain code quality standards',
-    ],
-    techStack: ['Angular', 'Laravel', 'PHP', 'MySQL', 'JavaScript', 'HTML/CSS'],
-    color: 'text-terminal-purple',
-  },
-];
+import { GraduationCap, Award, ChevronDown, ChevronRight, MapPin, Calendar } from 'lucide-react';
+import { roles as experiences, education, recognition, yearsOfExperience } from '@/data/experience';
 
 const ExperienceSection = () => {
   const [expandedId, setExpandedId] = useState<string | null>('asap');
@@ -76,41 +11,33 @@ const ExperienceSection = () => {
   };
 
   return (
-    <section className="py-20 px-4">
-      <div className="container mx-auto max-w-4xl">
+    <section id="experience" className="scroll-mt-20 py-20 px-4">
+      <div className="mx-auto max-w-5xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-10"
         >
-          <h2 className="text-2xl md:text-3xl font-mono font-bold mb-4">
-            <span className="text-muted-foreground">{'// '}</span>
-            <span className="text-gradient-primary">Experience</span>
+          <div className="hairline mb-5 w-12" />
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+            Experience
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            6+ years building scalable web applications, SaaS platforms, and AI-powered systems.
+          <p className="mt-2 max-w-2xl text-muted-foreground">
+            {yearsOfExperience()} years building scalable web applications, SaaS platforms, and
+            AI-powered systems.
           </p>
         </motion.div>
 
-        {/* Terminal-style git log */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glass rounded-xl overflow-hidden mb-12"
+          className="surface mb-12 overflow-hidden"
         >
-          {/* Terminal header */}
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-border/50 bg-secondary/30">
-            <div className="w-3 h-3 rounded-full bg-terminal-pink" />
-            <div className="w-3 h-3 rounded-full bg-terminal-yellow" />
-            <div className="w-3 h-3 rounded-full bg-terminal-green" />
-            <span className="ml-2 text-xs text-muted-foreground font-mono">git log --career</span>
-          </div>
-
           {/* Experience entries */}
-          <div className="p-4 md:p-6">
+          <div className="p-5 md:p-6">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -128,8 +55,8 @@ const ExperienceSection = () => {
                 <div className="flex gap-4 mb-6">
                   {/* Timeline dot */}
                   <div className="flex-shrink-0 mt-1.5">
-                    <div className={`w-6 h-6 rounded-full border-2 border-current ${exp.color} flex items-center justify-center bg-background`}>
-                      <div className={`w-2 h-2 rounded-full bg-current ${exp.color}`} />
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary bg-background">
+                      <div className="h-2 w-2 rounded-full bg-primary" />
                     </div>
                   </div>
 
@@ -141,12 +68,10 @@ const ExperienceSection = () => {
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div>
-                          <h3 className={`font-mono font-bold text-lg ${exp.color} group-hover:underline`}>
+                          <h3 className="text-lg font-semibold tracking-tight text-foreground group-hover:underline">
                             {exp.role}
                           </h3>
-                          <p className="text-foreground font-mono text-sm mt-1">
-                            <span className="text-terminal-orange">@</span> {exp.company}
-                          </p>
+                          <p className="mt-1 text-sm text-muted-foreground">{exp.company}</p>
                         </div>
                         <div className="flex-shrink-0 mt-1">
                           {expandedId === exp.id ? (
@@ -157,7 +82,7 @@ const ExperienceSection = () => {
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-muted-foreground font-mono">
+                      <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3 h-3" />
                           {exp.period}
@@ -194,7 +119,7 @@ const ExperienceSection = () => {
                               {exp.techStack.map((tech) => (
                                 <span
                                   key={tech}
-                                  className="text-xs font-mono px-2 py-1 rounded bg-secondary/50 text-muted-foreground border border-border/50"
+                                  className="tech-pill"
                                 >
                                   {tech}
                                 </span>
@@ -218,19 +143,19 @@ const ExperienceSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-hover rounded-xl p-6"
+            className="surface-hover p-6"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-secondary/50 text-terminal-blue">
+              <div className="p-2 rounded-lg bg-muted text-primary">
                 <GraduationCap className="w-5 h-5" />
               </div>
-              <h3 className="font-mono font-bold text-terminal-blue">Education</h3>
+              <h3 className="font-semibold tracking-tight text-foreground">Education</h3>
             </div>
-            <p className="font-mono text-sm text-foreground font-semibold">
-              Bachelor of Science in Information Technology
+            <p className="text-sm font-semibold text-foreground">
+              {education.degree}
             </p>
             <p className="text-sm text-muted-foreground mt-1">
-              STI College Malolos · Malolos City, Bulacan
+              {education.school} · {education.location}
             </p>
           </motion.div>
 
@@ -240,22 +165,22 @@ const ExperienceSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="glass-hover rounded-xl p-6"
+            className="surface-hover p-6"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-secondary/50 text-terminal-yellow">
+              <div className="p-2 rounded-lg bg-muted text-primary">
                 <Award className="w-5 h-5" />
               </div>
-              <h3 className="font-mono font-bold text-terminal-yellow">Recognition</h3>
+              <h3 className="font-semibold tracking-tight text-foreground">Recognition</h3>
             </div>
-            <p className="font-mono text-sm text-foreground font-semibold">
-              Leadership Award
+            <p className="text-sm font-semibold text-foreground">
+              {recognition.title}
             </p>
             <p className="text-sm text-muted-foreground mt-1">
-              GEER IT Solutions · December 2020
+              {recognition.org} · {recognition.date}
             </p>
             <p className="text-sm text-muted-foreground/80 mt-2">
-              For mentoring junior developers and leading successful project deliveries.
+              {recognition.note}
             </p>
           </motion.div>
         </div>

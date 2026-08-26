@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 
 const techStack = {
   Backend: [
-    { name: 'Node.js', color: 'accent', projects: ['Pop Empire', 'Dental Clinic', 'GEER', 'Loyalty Rewards'] },
-    { name: 'Express', color: 'primary', projects: ['Pop Empire', 'Dental Clinic', 'GEER'] },
-    { name: 'Prisma', color: 'terminal-blue', projects: ['Pop Empire', 'Dental Clinic', 'GEER'] },
+    { name: 'Node.js', color: 'accent', projects: ['Pop Empire', 'Dental Clinic', 'School System', 'Loyalty Rewards'] },
+    { name: 'Express', color: 'primary', projects: ['Pop Empire', 'Dental Clinic', 'School System'] },
+    { name: 'Prisma', color: 'terminal-blue', projects: ['Pop Empire', 'Dental Clinic', 'School System'] },
     { name: 'TypeScript', color: 'terminal-purple', projects: ['Pop Empire', 'Dental Clinic'] },
     { name: 'Python', color: 'terminal-yellow', projects: ['AI Scripts', 'Data Processing'] },
     { name: 'PHP', color: 'terminal-orange', projects: ['MLM System', 'WordPress Sites'] },
@@ -13,7 +13,7 @@ const techStack = {
     { name: 'CakePHP', color: 'terminal-yellow', projects: ['MLM System'] },
   ],
   Databases: [
-    { name: 'PostgreSQL', color: 'terminal-blue', projects: ['Pop Empire', 'Dental Clinic', 'GEER'] },
+    { name: 'PostgreSQL', color: 'terminal-blue', projects: ['Pop Empire', 'Dental Clinic', 'School System'] },
     { name: 'MySQL', color: 'terminal-orange', projects: ['MLM System', 'POS System'] },
     { name: 'MariaDB', color: 'primary', projects: ['MLM System'] },
     { name: 'MongoDB', color: 'accent', projects: ['Real-time Apps'] },
@@ -28,7 +28,7 @@ const techStack = {
   ],
   Frontend: [
     { name: 'React', color: 'primary', projects: ['Pop Empire', 'Dental Clinic'] },
-    { name: 'Vue.js', color: 'accent', projects: ['GEER', 'MLM System'] },
+    { name: 'Vue.js', color: 'accent', projects: ['School System', 'MLM System'] },
     { name: 'Angular', color: 'terminal-pink', projects: ['MLM Platform', 'Admin Panels'] },
     { name: 'TailwindCSS', color: 'terminal-purple', projects: ['Pop Empire', 'Dental Clinic'] },
     { name: 'Quasar', color: 'terminal-orange', projects: ['Vue.js Apps'] },
@@ -39,77 +39,59 @@ const TechStackSection = () => {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
 
   return (
-    <section className="py-20 px-4">
-      <div className="container mx-auto">
+    <section className="px-4 py-20">
+      <div className="mx-auto max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="mb-10"
         >
-          <h2 className="text-2xl md:text-3xl font-mono font-bold mb-4">
-            <span className="text-muted-foreground">{'// '}</span>
-            <span className="text-gradient-purple">Tech Stack</span>
-          </h2>
-          <p className="text-muted-foreground">Hover to see which projects use each technology</p>
+          <div className="hairline mb-5 w-12" />
+          <h2 className="section-title">Tech stack</h2>
+          <p className="lede mt-2 max-w-[60ch]">
+            Hover any technology to see where I have used it.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {Object.entries(techStack).map(([category, techs], categoryIndex) => (
+        {/* Grouped rows rather than four bordered cards — the page already has enough boxes. */}
+        <div className="divide-y divide-border border-t border-border">
+          {Object.entries(techStack).map(([category, techs], i) => (
             <motion.div
               key={category}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: categoryIndex * 0.1 }}
-              className="glass rounded-xl p-6"
-              style={{ zIndex: techs.some(t => t.name === hoveredTech) ? 50 : 'auto' }}
+              transition={{ delay: i * 0.06 }}
+              className="grid gap-3 py-5 sm:grid-cols-[170px_1fr] sm:gap-6"
             >
-              <h3 className="font-mono text-sm text-muted-foreground mb-4 uppercase tracking-wider">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 {category}
               </h3>
-              <div className="space-y-3">
+              <div className="flex flex-wrap gap-2">
                 {techs.map((tech) => (
-                  <motion.div
+                  <span
                     key={tech.name}
-                    onHoverStart={() => setHoveredTech(tech.name)}
-                    onHoverEnd={() => setHoveredTech(null)}
-                    className="relative"
+                    onMouseEnter={() => setHoveredTech(tech.name)}
+                    onMouseLeave={() => setHoveredTech(null)}
+                    className={`relative cursor-default rounded-lg border px-3 py-1.5 font-mono text-[13px] transition-colors ${
+                      hoveredTech === tech.name
+                        ? 'border-primary/50 bg-primary/5 text-foreground'
+                        : 'border-border bg-muted/60 text-muted-foreground'
+                    }`}
                   >
-                    <motion.div
-                      className={`p-3 rounded-lg glass-hover cursor-pointer border ${
-                        hoveredTech === tech.name ? 'border-primary/50' : 'border-transparent'
-                      }`}
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className={`font-mono text-sm text-${tech.color}`}>
-                        {tech.name}
+                    {tech.name}
+                    {hoveredTech === tech.name && tech.projects?.length > 0 && (
+                      <span className="absolute left-0 top-full z-20 mt-2 w-max max-w-xs rounded-lg border border-border bg-popover p-3 text-left shadow-lift">
+                        <span className="mb-1 block text-[11px] uppercase tracking-wider text-muted-foreground">
+                          Used in
+                        </span>
+                        <span className="block text-xs text-foreground">
+                          {tech.projects.join(' · ')}
+                        </span>
                       </span>
-                    </motion.div>
-
-                    {/* Tooltip */}
-                    {hoveredTech === tech.name && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="absolute left-full top-0 ml-2 z-10 glass rounded-lg p-3 min-w-48"
-                      >
-                        <div className="text-xs font-mono  text-muted-foreground mb-2">
-                          Used in:
-                        </div>
-                        <div className="flex flex-wrap gap-1">
-                          {tech.projects.map((project) => (
-                            <span
-                              key={project}
-                              className="text-xs px-2 py-1 bg-primary/10 rounded text-primary"
-                            >
-                              {project}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
                     )}
-                  </motion.div>
+                  </span>
                 ))}
               </div>
             </motion.div>

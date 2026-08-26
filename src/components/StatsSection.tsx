@@ -1,141 +1,86 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Clock, Users, Layers, Database } from 'lucide-react';
 
-type Stat =
-  | {
-      type: 'numeric';
-      icon: React.ReactNode;
-      value: number;
-      suffix: string;
-      label: string;
-      color: string;
-    }
-  | {
-      type: 'text';
-      icon: React.ReactNode;
-      headline: string;
-      subtitle: string;
-      color: string;
-    };
+interface Stat {
+  value: number | string;
+  suffix?: string;
+  label: string;
+  hint: string;
+}
 
 const stats: Stat[] = [
-  {
-    type: 'numeric',
-    icon: <Clock className="w-6 h-6" />,
-    value: 6,
-    suffix: '+',
-    label: 'Years Shipping Production Code',
-    color: 'text-primary',
-  },
-  {
-    type: 'numeric',
-    icon: <Users className="w-6 h-6" />,
-    value: 10000,
-    suffix: '+',
-    label: 'Users Served',
-    color: 'text-accent',
-  },
-  {
-    type: 'text',
-    icon: <Layers className="w-6 h-6" />,
-    headline: 'Multi-System',
-    subtitle: 'MLM · POS · School · E-commerce',
-    color: 'text-terminal-purple',
-  },
-  {
-    type: 'text',
-    icon: <Database className="w-6 h-6" />,
-    headline: 'Backend-Focused',
-    subtitle: 'APIs · Workflows · Data',
-    color: 'text-terminal-orange',
-  },
+  { value: 8, label: 'Years shipping production code', hint: 'since March 2018' },
+  { value: 20, suffix: '+', label: 'Sites and systems shipped', hint: 'agency work, client builds and my own products' },
+  { value: 6, label: 'Businesses on one platform', hint: 'one codebase, no forks' },
+  { value: '10,000+', label: 'Users served', hint: 'across MLM platforms built and maintained' },
 ];
 
-const AnimatedCounter = ({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) => {
-  const [count, setCount] = useState(0);
+const Counter = ({ value, suffix, inView }: { value: number; suffix?: string; inView: boolean }) => {
+  const [n, setN] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-
-    let start = 0;
-    const duration = 2000;
-    const increment = value / (duration / 16);
-
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-
-    return () => clearInterval(timer);
-  }, [value, inView]);
-
-  const formatNumber = (num: number) => {
-    if (num >= 1000) {
-      return (num / 1000).toFixed(num >= 10000 ? 0 : 1) + 'K';
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      setN(value);
+      return;
     }
-    return num.toString();
-  };
+    let frame = 0;
+    const total = 40;
+    const id = window.setInterval(() => {
+      frame += 1;
+      setN(Math.round(value * (frame / total)));
+      if (frame >= total) window.clearInterval(id);
+    }, 18);
+    return () => window.clearInterval(id);
+  }, [inView, value]);
 
   return (
-    <span className="font-mono font-bold text-4xl md:text-5xl">
-      {formatNumber(count)}{suffix}
-    </span>
+    <>
+      {n}
+      {suffix}
+    </>
   );
 };
 
+/** Full-bleed dark band — the page's main contrast beat between work and experience. */
 const StatsSection = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="py-20 px-4">
-      <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-2xl md:text-3xl font-mono font-bold mb-4">
-            <span className="text-muted-foreground">{'// '}</span>
-            <span className="text-gradient-primary">Impact Metrics</span>
-          </h2>
-        </motion.div>
+    <section ref={ref} className="band-ink px-4 py-20">
+      <div className="mx-auto max-w-5xl">
+        <div className="hairline mb-5 w-12" />
+        <h2 className="section-title" style={{ color: 'hsl(var(--ink-foreground))' }}>
+          The short version
+        </h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
+        <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
+          {stats.map((s, i) => (
             <motion.div
-              key={stat.type === 'numeric' ? stat.label : stat.headline}
-              initial={{ opacity: 0, y: 30 }}
+              key={s.label}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-hover rounded-xl p-6 text-center"
+              transition={{ delay: i * 0.08 }}
             >
-              <div className={`inline-flex p-3 rounded-lg bg-secondary/50 ${stat.color} mb-4`}>
-                {stat.icon}
+              <div
+                className="font-mono text-4xl font-semibold tracking-tight md:text-5xl"
+                style={{ color: 'hsl(var(--ink-foreground))', fontVariantNumeric: 'tabular-nums' }}
+              >
+                {typeof s.value === 'number' ? (
+                  <Counter value={s.value} suffix={s.suffix} inView={inView} />
+                ) : (
+                  s.value
+                )}
               </div>
-              {stat.type === 'numeric' ? (
-                <>
-                  <div className={stat.color}>
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={inView} />
-                  </div>
-                  <p className="text-muted-foreground text-sm mt-2 font-mono">{stat.label}</p>
-                </>
-              ) : (
-                <>
-                  <div className={`font-mono font-bold text-2xl md:text-3xl ${stat.color}`}>
-                    {stat.headline}
-                  </div>
-                  <p className="text-muted-foreground text-sm mt-2 font-mono">{stat.subtitle}</p>
-                </>
-              )}
+              <div className="mt-3 text-sm font-medium" style={{ color: 'hsl(var(--ink-foreground))' }}>
+                {s.label}
+              </div>
+              <div className="mt-1 text-xs" style={{ color: 'hsl(var(--ink-muted))' }}>
+                {s.hint}
+              </div>
             </motion.div>
           ))}
         </div>

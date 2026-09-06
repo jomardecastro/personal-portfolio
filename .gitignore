@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local environment (never commit — the API container reads RESEND_API_KEY from here)
+.env
+.env.*
+!.env.example

@@ -7,7 +7,16 @@
  * goes stale while the site stays current.
  * Node 24 strips the TypeScript types on import, so there is no build step.
  */
-import { chromium } from '/home/jomar/projects/geer-school/node_modules/playwright/index.mjs';
+// Playwright is not a dependency of this repo — the résumé is rebuilt a handful
+// of times a year and pulling several hundred MB of browsers into every install
+// isn't worth it. Point these at any local Playwright install:
+//
+//   PLAYWRIGHT_MODULE=/path/to/node_modules/playwright/index.mjs \
+//   CHROMIUM_PATH=/path/to/chrome \
+//   node scripts/build-resume.mjs
+//
+// With neither set, this uses a plain `playwright` install and its bundled browser.
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ?? 'playwright');
 import { writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -143,9 +152,9 @@ const html = `<!DOCTYPE html><html><head><meta charset="utf-8">
 const debugPath = resolve(ROOT, 'scripts/.resume-preview.html');
 writeFileSync(debugPath, html);
 
-const browser = await chromium.launch({
-  executablePath: '/home/jomar/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome',
-});
+const browser = await chromium.launch(
+  process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}
+);
 const page = await browser.newPage();
 await page.setContent(html, { waitUntil: 'networkidle' });
 await page.waitForTimeout(1200);

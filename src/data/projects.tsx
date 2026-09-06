@@ -76,7 +76,7 @@ export const projects: Project[] = [
     slug: 'omni',
     title: 'Omni',
     tagline:
-      'A multi-tenant MLM + e-commerce platform, running six live client businesses from one codebase.',
+      'A multi-tenant direct-sales commerce platform, running six live client businesses from one codebase.',
     description:
       'Omni is a self-hosted platform where distributors buy, sell, build a downline, and get paid — with an append-only ledger underneath so every peso is traceable. Four role-based apps (member, admin, cashier POS, merchant) sit over one correct ledger, and each client gets their own deployment, branding, and compensation rules without forking the code.',
     techStack: [

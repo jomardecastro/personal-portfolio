@@ -29,7 +29,7 @@ export const yearsOfExperience = (now: Date = new Date()): number => {
 
 export const profile = {
   name: 'Jose Marie De Castro',
-  title: 'Backend / Fullstack Developer',
+  title: 'Senior Full Stack Developer',
   location: 'Philippines',
   email: 'connect@jdecastro.dev',
   site: 'jdecastro.dev',
@@ -40,7 +40,7 @@ export const profile = {
 export const roles: Role[] = [
   {
     id: 'asap',
-    role: 'Freelance VA / Full-Stack Developer',
+    role: 'Full Stack Developer (Contract)',
     company: 'ASAP Cash Offer / Cash For Houses (US real estate investor)',
     period: 'March 2021 - Present',
     location: 'United States (Remote)',
@@ -55,9 +55,9 @@ export const roles: Role[] = [
   },
   {
     id: 'omni',
-    role: 'Platform Developer — Omni',
-    company: 'Independent / Omni Tech Business IT Solutions',
-    period: '2025 - Present',
+    role: 'Senior Full Stack Developer',
+    company: 'Omni Tech Business IT Solutions',
+    period: 'July 2025 - Present',
     location: 'Philippines (Remote)',
     description:
       'A multi-tenant commerce platform running six live client businesses from one codebase.',
@@ -81,7 +81,7 @@ export const roles: Role[] = [
   },
   {
     id: 'easyimpound',
-    role: 'Freelance Developer',
+    role: 'Full Stack Developer (Contract)',
     company: 'EasyImpound',
     period: 'September 2025 - November 2025',
     location: 'Los Angeles, CA (Remote)',
@@ -98,13 +98,13 @@ export const roles: Role[] = [
     company: 'GEER IT Solutions',
     period: 'December 2019 - June 2025',
     location: 'Taguig, Philippines',
-    description: 'Enterprise software development for MLM, POS, and e-commerce platforms.',
+    description: 'Enterprise software development for direct-sales commerce, POS, and e-commerce platforms.',
     highlights: [
-      'Developed and maintained white-label MLM system serving 10,000+ active users across multiple client deployments',
-      'Led small development team in migrating MLM system codebase to new architecture with zero downtime',
+      'Developed and maintained a white-label direct-sales commerce platform serving 10,000+ active users across multiple client deployments',
+      'Led a small development team in migrating the platform codebase to a new architecture with zero downtime',
       'Built POS and Inventory Management Systems for multiple retail clients with real-time transaction processing',
       'Optimized compensation plan algorithms and refactored POS system, improving performance by 40%',
-      'Built features across a multi-portal school management platform spanning K-12 and college academics — now lead on that product',
+      'Built features across a multi-portal school management platform spanning K-12 and college academics',
       'Received Leadership Award (December 2020) for mentoring junior developers and leading successful project deliveries',
     ],
     techStack: ['PHP', 'Laravel', 'CakePHP', 'Angular', 'Vue.js', 'MySQL', 'MariaDB', 'Git'],
@@ -115,9 +115,9 @@ export const roles: Role[] = [
     company: 'Digima Web Solutions',
     period: 'March 2018 - December 2019',
     location: 'Taguig City, Philippines',
-    description: 'MLM platform development with Angular and Laravel.',
+    description: 'Direct-sales commerce platform development with Angular and Laravel.',
     highlights: [
-      'Developed Admin Panel and Member Areas for MLM platform using Angular (frontend) and Laravel (backend)',
+      'Developed Admin Panel and Member Areas for a direct-sales platform using Angular (frontend) and Laravel (backend)',
       'Implemented role-based access control and user management systems',
       'Provided technical support and bug resolution, including after-hours emergency fixes for critical production issues',
       'Collaborated with senior developers to implement features and maintain code quality standards',

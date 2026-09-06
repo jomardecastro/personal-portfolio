@@ -2,7 +2,9 @@
  * Generates the résumé PDF from src/data/experience.ts — the same module the
  * site's Experience section renders. Run:  node scripts/build-resume.mjs
  *
- * Writes public/resume-2026.pdf (does NOT overwrite the existing resume.pdf).
+ * Writes public/resume.pdf — the stable URL the site's Resume buttons link to.
+ * Keep it that way: a year-stamped filename is how the published PDF silently
+ * goes stale while the site stays current.
  * Node 24 strips the TypeScript types on import, so there is no build step.
  */
 import { chromium } from '/home/jomar/projects/geer-school/node_modules/playwright/index.mjs';
@@ -20,7 +22,7 @@ const { profile, roles, education, recognition, skills, yearsOfExperience } = aw
 const YEARS = yearsOfExperience();
 
 // Neutral framing: works whether the reader is hiring or contracting.
-const SUMMARY = `Backend / fullstack developer with ${YEARS} years building systems where the numbers have to be
+const SUMMARY = `Full-stack developer with ${YEARS} years building systems where the numbers have to be
 right — commerce, point of sale, inventory, commissions and learning. Currently building and operating
 Omni, a multi-tenant commerce platform running six live client businesses from a single codebase, with an
 append-only financial ledger underneath. Comfortable owning a system end to end: schema and API through to
@@ -148,7 +150,7 @@ const page = await browser.newPage();
 await page.setContent(html, { waitUntil: 'networkidle' });
 await page.waitForTimeout(1200);
 
-const out = resolve(ROOT, 'public/resume-2026.pdf');
+const out = resolve(ROOT, 'public/resume.pdf');
 await page.pdf({ path: out, format: 'A4', printBackground: true });
 
 const pages = await page.evaluate(

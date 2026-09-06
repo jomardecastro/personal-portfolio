@@ -199,7 +199,7 @@ const AIBlogWriterDemo = () => {
       {/* Footer */}
       <div className="px-6 pb-6 flex items-center justify-between">
         <span className="text-xs text-muted-foreground font-mono">
-          ✓ Powers content for 10+ client websites
+          ✓ Powers content for 25+ client websites
         </span>
         <a href="#" className="text-primary text-sm font-mono flex items-center gap-1 hover:underline">
           View Full Project <ExternalLink className="w-3 h-3" />

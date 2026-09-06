@@ -41,16 +41,15 @@ export const roles: Role[] = [
   {
     id: 'asap',
     role: 'Freelance VA / Full-Stack Developer',
-    company: 'ASAP Cash Offer & Cash For Houses',
+    company: 'ASAP Cash Offer / Cash For Houses (US real estate investor)',
     period: 'March 2021 - Present',
     location: 'United States (Remote)',
     description: 'Lead generation websites, marketing automation, and AI tooling.',
     highlights: [
       'Developed AI-powered blog writing tool using Vue.js and Node.js integrated with OpenAI REST API, reducing content creation time by 80%',
       'Expanded the AI tool into a white-label API service accessible via webhooks, now serving multiple third-party clients',
-      'Built intelligent lead processing automation using WordPress, Zapier, and Grok AI API for real-time skip tracing and comparative market analysis',
       'Created multiple funnel-type WordPress websites driving conversions and lead generation for real estate investment business',
-      'Collaborated directly with client to enhance SEO strategies across 10+ websites, improving search rankings and organic traffic',
+      'Collaborated directly with client to enhance SEO strategies across 25+ websites, improving search rankings and organic traffic',
     ],
     techStack: ['Vue.js', 'Node.js', 'PHP', 'WordPress', 'OpenAI API', 'Grok AI', 'Zapier', 'MySQL'],
   },

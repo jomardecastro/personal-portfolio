@@ -51,13 +51,6 @@ const STOREFRONTS: ProjectImage[] = [
     width: 1600,
     height: 1000,
   },
-  {
-    src: '/work/omni/03-teslab.webp',
-    alt: 'TESLABARC marketplace storefront',
-    caption: 'TESLABARC — same components, different tenant theme and catalog.',
-    width: 1600,
-    height: 1000,
-  },
 ];
 
 export const systems: System[] = [
@@ -73,7 +66,6 @@ export const systems: System[] = [
     runsAt: [
       { label: 'SocialPreneur Inc.', url: 'https://socialpreneurinc.com' },
       { label: 'Alpha Global Prestige', url: 'https://alphaglobal-prestige.com' },
-      { label: 'TESLABARC', url: 'https://teslabtech.com' },
       { label: 'Ultra Proactive', url: 'https://ultraproactive.ph' },
     ],
     gating:

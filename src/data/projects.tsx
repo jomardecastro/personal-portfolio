@@ -99,7 +99,6 @@ export const projects: Project[] = [
     liveLinks: [
       { label: 'SocialPreneur Inc.', url: 'https://socialpreneurinc.com' },
       { label: 'Alpha Global Prestige', url: 'https://alphaglobal-prestige.com' },
-      { label: 'TESLABARC', url: 'https://teslabtech.com' },
       { label: 'Ultra Proactive', url: 'https://ultraproactive.ph' },
     ],
     metrics: [
@@ -133,13 +132,6 @@ export const projects: Project[] = [
         alt: 'Ultra Proactive / Promag300 Premier storefront',
         caption:
           'Ultra Proactive — one deployment serving two branded domains with independent sessions.',
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: '/work/omni/03-teslab.webp',
-        alt: 'TESLABARC marketplace storefront',
-        caption: 'TESLABARC — same components, a different tenant theme and catalog.',
         width: 1600,
         height: 1000,
       },

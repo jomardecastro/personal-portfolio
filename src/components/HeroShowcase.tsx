@@ -27,7 +27,7 @@ const HeroShowcase = ({ shots }: { shots: Shot[] }) => {
         loading="eager"
       />
 
-      <div className="mt-4 grid grid-cols-4 gap-3">
+      <div className="mt-4 grid grid-cols-3 gap-3">
         {shots.map((s, i) => (
           <button
             key={s.src}

@@ -16,9 +16,7 @@ const fade = (delay: number) => ({
 const SHOTS = [
   { src: '/work/omni/05-socialpreneur.webp', url: 'socialpreneurinc.com', alt: 'SocialPreneur Inc. storefront' },
   { src: '/work/omni/02-agp.webp', url: 'alphaglobal-prestige.com', alt: 'Alpha Global Prestige storefront' },
-  { src: '/work/omni/04-ultraproactive.webp', url: 'ultraproactive.ph', alt: 'Ultra Proactive storefront' },
-  { src: '/work/omni/03-teslab.webp', url: 'teslabtech.com', alt: 'TESLABARC storefront' },
-];
+  { src: '/work/omni/04-ultraproactive.webp', url: 'ultraproactive.ph', alt: 'Ultra Proactive storefront' },];
 
 const HeroSection = ({ onContact }: HeroSectionProps) => (
   <section className="px-4 pt-20 md:pt-28">

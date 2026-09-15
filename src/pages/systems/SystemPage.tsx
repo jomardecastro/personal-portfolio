@@ -232,7 +232,7 @@ const SystemPage = () => {
                 <Link
                   key={s.slug}
                   to={`/systems/${s.slug}`}
-                  className="surface-hover flex items-center justify-between gap-3 p-4"
+                  className="surface-hover flex min-w-0 items-center justify-between gap-3 p-4"
                 >
                   <div className="min-w-0">
                     <div className="font-semibold text-foreground">{s.name}</div>

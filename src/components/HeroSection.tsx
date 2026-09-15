@@ -12,12 +12,12 @@ const fade = (delay: number) => ({
   transition: { duration: 0.5, delay },
 });
 
-// Four live client storefronts — the visitor picks; nothing auto-advances.
+// Live client storefronts — the visitor picks; nothing auto-advances.
 const SHOTS = [
-  { src: '/work/omni/02-agp.webp', url: 'alphaglobal-prestige.com', alt: 'Alpha Global Prestige storefront' },
   { src: '/work/omni/05-socialpreneur.webp', url: 'socialpreneurinc.com', alt: 'SocialPreneur Inc. storefront' },
+  { src: '/work/omni/02-agp.webp', url: 'alphaglobal-prestige.com', alt: 'Alpha Global Prestige storefront' },
   { src: '/work/omni/04-ultraproactive.webp', url: 'ultraproactive.ph', alt: 'Ultra Proactive storefront' },
-  { src: '/work/omni/01-successmall.webp', url: 'successmall.shopping', alt: 'Success Mall storefront' },
+  { src: '/work/omni/03-teslab.webp', url: 'teslabtech.com', alt: 'TESLABARC storefront' },
 ];
 
 const HeroSection = ({ onContact }: HeroSectionProps) => (

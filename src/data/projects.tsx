@@ -97,7 +97,7 @@ export const projects: Project[] = [
     featured: true,
     isPrivate: true,
     liveLinks: [
-      { label: 'Success Mall', url: 'https://successmall.shopping' },
+      { label: 'SocialPreneur Inc.', url: 'https://socialpreneurinc.com' },
       { label: 'Alpha Global Prestige', url: 'https://alphaglobal-prestige.com' },
       { label: 'TESLABARC', url: 'https://teslabtech.com' },
       { label: 'Ultra Proactive', url: 'https://ultraproactive.ph' },
@@ -108,12 +108,19 @@ export const projects: Project[] = [
       { value: '19', label: 'Compensation plans', hint: 'pluggable, configurable per tenant' },
     ],
     heroImage: {
-      src: '/work/omni/02-agp.webp',
-      alt: 'Alpha Global Prestige storefront — a bespoke branded landing page built on Omni',
+      src: '/work/omni/05-socialpreneur.webp',
+      alt: 'SocialPreneur Inc. storefront — a dark, brand-led product landing built on Omni',
       width: 1600,
       height: 1000,
     },
     gallery: [
+      {
+        src: '/work/omni/05-socialpreneur.webp',
+        alt: 'SocialPreneur Inc. storefront',
+        caption: 'SocialPreneur Inc. — a dark, brand-led product landing on the same components.',
+        width: 1600,
+        height: 1000,
+      },
       {
         src: '/work/omni/02-agp.webp',
         alt: 'Alpha Global Prestige storefront',
@@ -126,13 +133,6 @@ export const projects: Project[] = [
         alt: 'Ultra Proactive / Promag300 Premier storefront',
         caption:
           'Ultra Proactive — one deployment serving two branded domains with independent sessions.',
-        width: 1600,
-        height: 1000,
-      },
-      {
-        src: '/work/omni/01-successmall.webp',
-        alt: 'Success Mall marketplace storefront',
-        caption: 'Success Mall — marketplace layout with member pricing and cashback.',
         width: 1600,
         height: 1000,
       },

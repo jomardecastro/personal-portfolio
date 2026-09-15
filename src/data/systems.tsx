@@ -31,6 +31,13 @@ export interface System {
 
 const STOREFRONTS: ProjectImage[] = [
   {
+    src: '/work/omni/05-socialpreneur.webp',
+    alt: 'SocialPreneur Inc. storefront',
+    caption: 'SocialPreneur Inc. — a dark, brand-led product landing on the same components.',
+    width: 1600,
+    height: 1000,
+  },
+  {
     src: '/work/omni/02-agp.webp',
     alt: 'Alpha Global Prestige storefront',
     caption: 'Alpha Global Prestige — a bespoke branded landing on the shared platform.',
@@ -41,20 +48,6 @@ const STOREFRONTS: ProjectImage[] = [
     src: '/work/omni/04-ultraproactive.webp',
     alt: 'Ultra Proactive storefront',
     caption: 'Ultra Proactive — one deployment serving two branded domains with independent sessions.',
-    width: 1600,
-    height: 1000,
-  },
-  {
-    src: '/work/omni/05-socialpreneur.webp',
-    alt: 'SocialPreneur Inc. storefront',
-    caption: 'SocialPreneur Inc. — a dark, brand-led product landing on the same components.',
-    width: 1600,
-    height: 1000,
-  },
-  {
-    src: '/work/omni/01-successmall.webp',
-    alt: 'Success Mall marketplace storefront',
-    caption: 'Success Mall — the learning-storefront configuration, selling courses as products.',
     width: 1600,
     height: 1000,
   },
@@ -73,16 +66,15 @@ export const systems: System[] = [
     name: 'E-Commerce',
     tagline: 'A white-label storefront with tiered pricing, zone-based shipping rates, and a third-party marketplace.',
     description:
-      'Public catalog, cart and checkout, several settlement paths, per-courier shipping rates from an admin-published zone table, and a merchant marketplace where approved third-party sellers run their own shop with their own wallet and payout rail. It runs across six client deployments, five of them with public storefronts you can open below.',
+      'Public catalog, cart and checkout, several settlement paths, per-courier shipping rates from an admin-published zone table, and a merchant marketplace where approved third-party sellers run their own shop with their own wallet and payout rail. It runs across six client deployments, including the public storefronts you can open below.',
     icon: <Store className="h-5 w-5" />,
     status: 'production',
     statusNote: 'Live across four client brands',
     runsAt: [
-      { label: 'Success Mall', url: 'https://successmall.shopping' },
+      { label: 'SocialPreneur Inc.', url: 'https://socialpreneurinc.com' },
       { label: 'Alpha Global Prestige', url: 'https://alphaglobal-prestige.com' },
       { label: 'TESLABARC', url: 'https://teslabtech.com' },
       { label: 'Ultra Proactive', url: 'https://ultraproactive.ph' },
-      { label: 'SocialPreneur Inc.', url: 'https://socialpreneurinc.com' },
     ],
     gating:
       'Runs standalone. A tenant can serve an information-only public site with the whole shop unmounted, or a full marketplace, from the same build.',

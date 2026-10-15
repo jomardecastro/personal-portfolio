@@ -3,22 +3,32 @@ import { motion } from 'framer-motion';
 
 const techStack = {
   Backend: [
-    { name: 'Node.js', color: 'accent', projects: ['Pop Empire', 'Dental Clinic', 'School System', 'Loyalty Rewards'] },
+    { name: 'Node.js', color: 'accent', projects: ['Omni', 'MLM Platform', 'Pop Empire', 'Dental Clinic', 'School System', 'Loyalty Rewards'] },
+    { name: 'Fastify', color: 'terminal-blue', projects: ['Omni'] },
     { name: 'Express', color: 'primary', projects: ['Pop Empire', 'Dental Clinic', 'School System'] },
     { name: 'Prisma', color: 'terminal-blue', projects: ['Pop Empire', 'Dental Clinic', 'School System'] },
-    { name: 'TypeScript', color: 'terminal-purple', projects: ['Pop Empire', 'Dental Clinic'] },
+    { name: 'TypeScript', color: 'terminal-purple', projects: ['Omni', 'Pop Empire', 'Dental Clinic'] },
     { name: 'Python', color: 'terminal-yellow', projects: ['AI Scripts', 'Data Processing'] },
     { name: 'PHP', color: 'terminal-orange', projects: ['MLM System', 'WordPress Sites'] },
     { name: 'Laravel', color: 'destructive', projects: ['MLM Platform', 'Admin Panels'] },
     { name: 'CakePHP', color: 'terminal-yellow', projects: ['MLM System'] },
   ],
   Databases: [
-    { name: 'PostgreSQL', color: 'terminal-blue', projects: ['Pop Empire', 'Dental Clinic', 'School System'] },
+    { name: 'PostgreSQL', color: 'terminal-blue', projects: ['Omni', 'Pop Empire', 'Dental Clinic', 'School System'] },
+    { name: 'Drizzle', color: 'accent', projects: ['Omni'] },
     { name: 'MySQL', color: 'terminal-orange', projects: ['MLM System', 'POS System'] },
     { name: 'MariaDB', color: 'primary', projects: ['MLM System'] },
     { name: 'MongoDB', color: 'accent', projects: ['Real-time Apps'] },
     { name: 'Redis', color: 'destructive', projects: ['Caching', 'Sessions'] },
-    { name: 'Firebase', color: 'terminal-yellow', projects: ['Real-time Features'] },
+    { name: 'Firestore', color: 'terminal-yellow', projects: ['MLM Platform'] },
+  ],
+  Infrastructure: [
+    { name: 'Google Cloud Platform', color: 'terminal-blue', projects: ['MLM Platform'] },
+    { name: 'Firebase', color: 'terminal-yellow', projects: ['MLM Platform'] },
+    { name: 'Docker', color: 'primary', projects: ['Omni'] },
+    { name: 'Caddy', color: 'accent', projects: ['Omni'] },
+    { name: 'BullMQ', color: 'destructive', projects: ['Omni'] },
+    { name: 'S3-compatible storage', color: 'terminal-orange', projects: ['Omni'] },
   ],
   'AI/Automation': [
     { name: 'OpenAI', color: 'accent', projects: ['Blog Writer', 'Content Generator'] },

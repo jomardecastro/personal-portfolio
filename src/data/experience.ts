@@ -102,12 +102,13 @@ export const roles: Role[] = [
     highlights: [
       'Developed and maintained a white-label direct-sales commerce platform serving 10,000+ active users across multiple client deployments',
       'Led a small development team in migrating the platform codebase to a new architecture with zero downtime',
+      'Built and operated the platform backend as a serverless Google Cloud stack: Node.js Cloud Functions with Firestore, Pub/Sub scheduled jobs, Firebase Auth, Cloud Messaging push notifications, and Firebase Hosting, across separate staging and production projects',
       'Built POS and Inventory Management Systems for multiple retail clients with real-time transaction processing',
       'Optimized compensation plan algorithms and refactored POS system, improving performance by 40%',
       'Built features across a multi-portal school management platform spanning K-12 and college academics',
       'Received Leadership Award (December 2020) for mentoring junior developers and leading successful project deliveries',
     ],
-    techStack: ['PHP', 'Laravel', 'CakePHP', 'Angular', 'Vue.js', 'MySQL', 'MariaDB', 'Git'],
+    techStack: ['Node.js', 'Firebase', 'Google Cloud Platform', 'Vue.js', 'Quasar', 'Capacitor', 'Angular', 'PHP', 'Laravel', 'CakePHP', 'MySQL', 'MariaDB'],
   },
   {
     id: 'digima',
@@ -159,7 +160,7 @@ export const skills: { label: string; items: string[] }[] = [
   },
   {
     label: 'Infrastructure',
-    items: ['Docker', 'Caddy', 'BullMQ', 'S3-compatible storage', 'Git', 'Linux', 'CI/CD'],
+    items: ['Google Cloud Platform', 'Firebase (Cloud Functions, Firestore, Hosting)', 'Docker', 'Caddy', 'BullMQ', 'S3-compatible storage', 'Git', 'Linux', 'CI/CD'],
   },
   {
     label: 'Other',
